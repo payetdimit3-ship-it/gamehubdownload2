@@ -1,0 +1,35 @@
+body {
+      background-color: #060712;
+      background-image:
+        radial-gradient(circle at 12% 10%, rgba(244, 63, 94, 0.14), transparent 36%),
+        radial-gradient(circle at 88% 15%, rgba(139, 92, 246, 0.15), transparent 38%),
+        radial-gradient(circle at 50% 95%, rgba(16, 185, 129, 0.08), transparent 42%);
+      color: #f8fafc;
+      font-family: 'Inter', sans-serif;
+    }
+    .glass-panel {
+      background: rgba(15, 19, 46, 0.85);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(244, 63, 94, 0.22);
+    }
+    .neon-card {
+      background: rgba(11, 14, 35, 0.9);
+      border: 1px solid rgba(139, 92, 246, 0.25);
+    }
+    .zuri-glow {
+      box-shadow: 0 14px 40px -12px rgba(244, 63, 94, 0.24), 0 8px 28px -12px rgba(139, 92, 246, 0.25);
+    }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #080a19; }
+    ::-webkit-scrollbar-thumb { background: #2d3570; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #4c57ad; }
+    @keyframes popIn {
+      from { opacity: 0; transform: translateY(8px) scale(0.985); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .anim-pop { animation: popIn 0.2s ease-out forwards; }
+    @keyframes pulseRing {
+      0%, 100% { transform: scale(1); opacity: 0.75; }
+      50% { transform: scale(1.16); opacity: 0.25; }
+    }
+    .call-pulse { animation: pulseRing 1.5s infinite ease-in-out; }

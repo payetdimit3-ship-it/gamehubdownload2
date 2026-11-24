@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="sw" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zuri — Story & Simu | LIFEISGAMETZ</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script src="assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body class="min-h-screen flex flex-col selection:bg-rose-500/30 selection:text-rose-200">
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm pointer-events-none"></div>
+
+  <!-- Top Navigation Header -->
+  <header class="sticky top-0 z-40 glass-panel border-b border-rose-500/20">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 py-2.5 flex flex-wrap items-center justify-between gap-3">
+      <!-- LIFEISGAMETZ SVG Logo + Zuri Identity -->
+      <div class="flex items-center gap-3">
+        <div id="lifeisgametz-logo-wrap" class="relative w-11 h-11 rounded-2xl bg-obsidian-950 border border-emerald-400/35 flex items-center justify-center shadow-lg shadow-emerald-500/15 shrink-0">
+          <!-- Built-in LIFEISGAMETZ SVG Logo -->
+          <svg id="lifeisgametz-svg" viewBox="0 0 64 64" class="w-9 h-9" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="LIFEISGAMETZ Logo">
+            <defs>
+              <linearGradient id="lgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#10b981" />
+                <stop offset="55%" stop-color="#22d3ee" />
+                <stop offset="100%" stop-color="#f59e0b" />
+              </linearGradient>
+            </defs>
+            <polygon points="32,4 56,18 56,46 32,60 8,46 8,18" fill="#090c1f" stroke="url(#lgGrad)" stroke-width="3.2" />
+            <path d="M20 22 L44 22 M32 22 L32 43 M22 33 L42 33" stroke="url(#lgGrad)" stroke-width="3.4" stroke-linecap="round" fill="none" />
+            <circle cx="32" cy="14" r="3" fill="#f59e0b" />
+            <circle cx="20" cy="43" r="2.6" fill="#10b981" />
+            <circle cx="44" cy="43" r="2.6" fill="#22d3ee" />
+          </svg>
+          <span id="online-indicator" class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-amber-400 border-2 border-obsidian-950"></span>
+        </div>
+
+        <div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <h1 id="header-agent-name" class="text-base sm:text-lg font-extrabold tracking-tight text-white">Zuri</h1>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
+              LIFEISGAMETZ
+            </span>
+          </div>
+          <p class="text-[11px] text-slate-400">
+            Mwandani Wako • Mauzo, Tovuti, YouTube, TikTok &amp; Instagram
+          </p>
+        </div>
+      </div>
+
+      <!-- Primary Step Navigation -->
+      <nav aria-label="Urambazaji wa Zuri" class="flex items-center gap-1 bg-obsidian-950/95 p-1 rounded-2xl border border-slate-800 overflow-x-auto max-w-full">
+        <a href="index.html" class="step-btn px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-1.5 shrink-0"><i class="fa-solid fa-house"></i><span>Nyumbani</span></a>
+        <a href="chat.html" class="step-btn px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-1.5 shrink-0"><span>Story &amp; Simu</span></a>
+        <a href="business.html" class="step-btn px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-1.5 shrink-0"><span>Tovuti &amp; Mauzo</span></a>
+        <a href="creator.html" class="step-btn px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-1.5 shrink-0"><span>YT • TikTok • IG</span><span id="nav-post-badge" class="px-1.5 rounded-full bg-fuchsia-500/25 text-fuchsia-200 text-[10px]">0</span></a>
+        <a href="api-settings.html" class="step-btn px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-1.5 shrink-0"><span>Keys &amp; Sauti</span><span id="nav-keys-badge" class="px-1.5 rounded-full bg-rose-500/25 text-rose-200 text-[10px]">0</span></a>
+        <a href="workspace.html" class="step-btn px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-1.5 shrink-0"><span>Mafaili &amp; Logo</span></a>
+      </nav>
+
+      <!-- Live Voice Call & TTS Controls -->
+      <div class="flex items-center gap-2">
+        <button onclick="toggleLiveCallMode()" id="live-call-btn" class="px-3 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-bold flex items-center gap-1.5 shadow-lg shadow-emerald-600/20 transition shrink-0">
+          <i id="live-call-icon" class="fa-solid fa-phone"></i>
+          <span id="live-call-label">Piga Simu / Live Voice</span>
+        </button>
+        <button onclick="toggleTTS()" id="tts-btn" class="hidden sm:flex px-3 py-2 rounded-xl bg-obsidian-850 hover:bg-obsidian-800 border border-slate-700/80 text-xs font-semibold text-slate-200 items-center gap-1.5 transition shrink-0">
+          <i id="tts-icon" class="fa-solid fa-volume-high text-rose-400"></i>
+          <span id="tts-text">Sauti: ON</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Live Voice Call Banner (Shown when Live Call Mode is active) -->
+  <div id="live-call-banner" class="hidden bg-emerald-950/85 border-b border-emerald-400/40 px-4 py-2.5">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <span class="relative flex h-3 w-3">
+          <span class="call-pulse absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-400"></span>
+        </span>
+        <div>
+          <span id="call-status-text" class="text-xs font-bold text-emerald-200">Simu ya Moja kwa Moja Imewashwa — Zuri anakusikiliza...</span>
+          <p class="text-[11px] text-emerald-100/75">Ongea kwa sauti; Zuri atajibu kwa sauti ya kike yenye mlio laini wa Kiarabu kisha atarudi kukusikiliza.</p>
+        </div>
+      </div>
+      <button onclick="stopLiveCallMode()" class="px-3.5 py-1.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold flex items-center gap-1.5">
+        <i class="fa-solid fa-phone-slash"></i>
+        <span>Kata Simu</span>
+      </button>
+    </div>
+  </div>
+
+  <main class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-4 sm:py-6">
+    <section id="view-chat" class="step-view grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+      <!-- Chat Stream Panel (8 Cols) -->
+      <div class="lg:col-span-8 glass-panel zuri-glow rounded-3xl flex flex-col h-[calc(100vh-8.5rem)] min-h-[540px] overflow-hidden">
+        <!-- Mood & Provider Strip -->
+        <div class="px-4 py-3 bg-obsidian-900/85 border-b border-rose-500/15 flex flex-wrap items-center justify-between gap-2">
+          <div class="flex items-center gap-1.5 overflow-x-auto">
+            <span class="text-[11px] font-bold uppercase text-slate-400 mr-1">Mood:</span>
+            <button onclick="setMood('Mchangamfu & Mpole')" data-mood="Mchangamfu & Mpole" class="mood-btn px-2.5 py-1 rounded-xl text-xs font-semibold bg-rose-500/20 text-rose-200 border border-rose-500/40 shrink-0">🌸 Mchangamfu &amp; Mpole</button>
+            <button onclick="setMood('Mcheshi & Mtani')" data-mood="Mcheshi & Mtani" class="mood-btn px-2.5 py-1 rounded-xl text-xs font-medium bg-obsidian-850 text-slate-300 border border-slate-800 shrink-0">😄 Mcheshi &amp; Mtani</button>
+            <button onclick="setMood('Mshauri wa Biashara')" data-mood="Mshauri wa Biashara" class="mood-btn px-2.5 py-1 rounded-xl text-xs font-medium bg-obsidian-850 text-slate-300 border border-slate-800 shrink-0">📈 Mshauri wa Biashara</button>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <select id="active-model-select" onchange="saveSettings()" class="bg-obsidian-950 border border-slate-700/80 rounded-xl px-2.5 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-rose-400">
+              <option value="auto">✨ Auto (Mnyororo Wote 7)</option>
+              <option value="cerebras">Cerebras</option>
+              <option value="groq">Groq</option>
+              <option value="gemini">Google Gemini</option>
+              <option value="openrouter">OpenRouter</option>
+              <option value="deepseek">DeepSeek</option>
+              <option value="openai">OpenAI</option>
+              <option value="claude">Anthropic Claude</option>
+            </select>
+            <button onclick="clearChat()" title="Futa mazungumzo" class="p-2 rounded-xl bg-obsidian-850 hover:bg-rose-500/20 text-slate-400 hover:text-rose-300 border border-slate-800 text-xs transition">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Quick Action Pills -->
+        <div class="px-4 py-2 bg-obsidian-950/65 border-b border-slate-800/80 flex items-center gap-2 overflow-x-auto">
+          <span class="text-[11px] text-rose-300 font-semibold shrink-0"><i class="fa-solid fa-sparkles"></i> Haraka:</span>
+          <button onclick="askSalesGrowthAdvice()" class="px-2.5 py-1 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-200 border border-emerald-500/35 text-[11px] font-semibold shrink-0 transition">
+            📈 Ushauri wa Kuongeza Mauzo
+          </button>
+          <button onclick="useQuickPrompt('Habari Zuri! Leo tupige story nzuri za maisha, gaming na mipango yetu.')" class="px-2.5 py-1 rounded-lg bg-obsidian-850 hover:bg-obsidian-800 text-[11px] text-slate-200 border border-slate-800 shrink-0 transition">
+            💬 Piga Story
+          </button>
+          <button onclick="useQuickPrompt('Niandalie wazo la video ya YouTube, TikTok, na post ya Instagram kutangaza biashara ya LIFEISGAMETZ leo.')" class="px-2.5 py-1 rounded-lg bg-obsidian-850 hover:bg-obsidian-800 text-[11px] text-slate-200 border border-slate-800 shrink-0 transition">
+            🎬 Maudhui ya YT/TT/IG
+          </button>
+          <button onclick="testArabicFemaleVoice()" class="px-2.5 py-1 rounded-lg bg-violet-500/15 hover:bg-violet-500/25 text-violet-200 border border-violet-500/35 text-[11px] font-semibold shrink-0 transition">
+            🎙️ Jaribu Sauti ya Kiarabu
+          </button>
+        </div>
+
+        <!-- Messages Container -->
+        <div id="chat-stream" class="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4"></div>
+
+        <!-- Image Preview Bar -->
+        <div id="chat-img-preview" class="hidden px-4 py-2 bg-obsidian-900 border-t border-rose-500/20 flex items-center justify-between gap-3">
+          <div class="flex items-center gap-3 min-w-0">
+            <img id="chat-img-thumb" src="" alt="Preview" class="w-11 h-11 rounded-xl object-cover border border-rose-400/50" />
+            <div class="min-w-0">
+              <p id="chat-img-name" class="text-xs font-semibold text-rose-200 truncate">picha.png</p>
+              <p class="text-[11px] text-slate-400">Zuri ataichambua picha hii pamoja na ujumbe wako</p>
+            </div>
+          </div>
+          <button onclick="removeAttachedImg()" class="p-1.5 text-slate-400 hover:text-rose-400">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <!-- Chat Form -->
+        <form onsubmit="submitChat(event)" class="p-3 sm:p-4 bg-obsidian-900/90 border-t border-rose-500/20">
+          <div class="flex items-end gap-2">
+            <label title="Pakia picha" class="p-3 rounded-2xl bg-obsidian-850 hover:bg-obsidian-800 border border-slate-700/80 text-rose-300 cursor-pointer transition shrink-0">
+              <i class="fa-solid fa-image"></i>
+              <input id="chat-file-input" type="file" accept="image/*" class="hidden" onchange="onChatImageSelected(event)" />
+            </label>
+
+            <button id="voice-mic-btn" type="button" onclick="toggleSpeechRecognition()" title="Ongea kwa sauti" class="p-3 rounded-2xl bg-obsidian-850 hover:bg-obsidian-800 border border-slate-700/80 text-cyan-300 transition shrink-0">
+              <i id="voice-mic-icon" class="fa-solid fa-microphone"></i>
+            </button>
+
+            <textarea
+              id="chat-textarea"
+              rows="1"
+              placeholder="Mwambie Zuri chochote—story za karibu, ushauri wa mauzo, au maudhui ya YouTube/TikTok/IG..."
+              onkeydown="onTextareaKey(event)"
+              oninput="autoGrow(this)"
+              class="flex-1 bg-obsidian-950 border border-slate-700/80 focus:border-rose-400 rounded-2xl px-4 py-3 text-sm text-white placeholder-slate-500 resize-none max-h-32 focus:outline-none leading-relaxed"
+            ></textarea>
+
+            <button id="chat-submit-btn" type="submit" class="px-4 py-3 rounded-2xl bg-gradient-to-r from-rose-500 to-violet-600 hover:from-rose-400 hover:to-violet-500 text-white font-bold text-sm shadow-lg shadow-rose-600/20 flex items-center gap-1.5 transition shrink-0">
+              <span>Tuma</span>
+              <i class="fa-solid fa-paper-plane text-xs"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Companion Sidebar: Sales Pulse, Memory & To-Do (4 Cols) -->
+      <aside class="lg:col-span-4 space-y-4">
+        <!-- Quick Sales & Store Pulse -->
+        <div class="glass-panel rounded-3xl p-4 space-y-3">
+          <div class="flex items-center justify-between">
+            <h2 class="text-xs font-bold uppercase tracking-wider text-emerald-300 flex items-center gap-1.5">
+              <i class="fa-solid fa-chart-line"></i> Dira ya Biashara &amp; Mauzo
+            </h2>
+            <button onclick="switchStep('business')" class="text-[11px] text-cyan-300 hover:underline font-semibold">Hariri →</button>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <div class="bg-obsidian-950 border border-slate-800 rounded-2xl p-2.5">
+              <span class="text-[10px] text-slate-400 block">Lengo la Mauzo</span>
+              <span id="sidebar-sales-goal" class="font-bold text-emerald-300 truncate block mt-0.5">Halijawekwa</span>
+            </div>
+            <div class="bg-obsidian-950 border border-slate-800 rounded-2xl p-2.5">
+              <span class="text-[10px] text-slate-400 block">Katalogi ya Tovuti</span>
+              <span class="font-bold text-cyan-300 block mt-0.5">Yako Binafsi</span>
+            </div>
+          </div>
+          <button onclick="askSalesGrowthAdvice()" class="w-full py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-bold shadow">
+            💡 Nipe Ushauri wa Kuongeza Mauzo Sasa
+          </button>
+        </div>
+
+        <!-- Personality & Voice -->
+        <div class="glass-panel rounded-3xl p-4 space-y-3">
+          <div class="flex items-center justify-between">
+            <h2 class="text-xs font-bold uppercase tracking-wider text-rose-300 flex items-center gap-1.5">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> Wasifu wa Zuri
+            </h2>
+            <span class="text-[11px] text-amber-300 font-medium">🔒 WA Lidhaa: ON</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="block text-[11px] text-slate-400 mb-1">Jina</label>
+              <input id="setting-name" type="text" value="Zuri" onchange="saveSettings()" class="w-full bg-obsidian-950 border border-slate-800 rounded-xl px-3 py-1.5 text-xs text-white focus:outline-none focus:border-rose-400" />
+            </div>
+            <div>
+              <label class="block text-[11px] text-slate-400 mb-1">Sauti ya Kike</label>
+              <select id="setting-voice" onchange="saveSettings()" class="w-full bg-obsidian-950 border border-slate-800 rounded-xl px-2 py-1.5 text-xs text-white focus:outline-none focus:border-rose-400">
+                <option value="">Auto (Kiarabu/Kike)</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="block text-[11px] text-slate-400 mb-1">Maelekezo Maalum ya Tabia</label>
+            <textarea id="setting-persona" rows="2" onchange="saveSettings()" placeholder="Mfano: Ongea kwa ukaribu wa dada/rafiki wa karibu na unisaidie kusukuma mauzo ya LIFEISGAMETZ..." class="w-full bg-obsidian-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-rose-400"></textarea>
+          </div>
+        </div>
+
+        <!-- Persistent Memory -->
+        <div class="glass-panel rounded-3xl p-4 space-y-3">
+          <h2 class="text-xs font-bold uppercase tracking-wider text-violet-300 flex items-center gap-1.5">
+            <i class="fa-solid fa-brain"></i> Kumbukumbu (<span id="mem-count">0</span>)
+          </h2>
+          <form onsubmit="addMemory(event)" class="flex gap-2">
+            <input id="mem-input" type="text" placeholder="Mkaririshe jambo..." class="flex-1 bg-obsidian-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-violet-400" />
+            <button type="submit" class="px-3 py-2 rounded-xl bg-violet-600 hover:bg-violet-500 text-white text-xs font-semibold">Hifadhi</button>
+          </form>
+          <div id="mem-list" class="space-y-1.5 max-h-36 overflow-y-auto pr-1"></div>
+        </div>
+
+        <!-- To-Do List -->
+        <div class="glass-panel rounded-3xl p-4 space-y-3">
+          <h2 class="text-xs font-bold uppercase tracking-wider text-cyan-300 flex items-center gap-1.5">
+            <i class="fa-solid fa-list-check"></i> Majukumu (<span id="todo-pending-count">0</span>)
+          </h2>
+          <form onsubmit="addTodo(event)" class="flex gap-2">
+            <input id="todo-input" type="text" placeholder="Ongeza kazi ya kufuatilia..." class="flex-1 bg-obsidian-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400" />
+            <button type="submit" class="px-3 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-semibold">Ongeza</button>
+          </form>
+          <div id="todo-list" class="space-y-1.5 max-h-36 overflow-y-auto pr-1"></div>
+        </div>
+      </aside>
+    </section>
+  </main>
+  <script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="sw" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zuri — Keys & Sauti | LIFEISGAMETZ</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script src="assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body class="min-h-screen flex flex-col selection:bg-rose-500/30 selection:text-rose-200">
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm pointer-events-none"></div>
+
+  <!-- Top Navigation Header -->
+  <header class="sticky top-0 z-40 glass-panel border-b border-rose-500/20">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 py-2.5 flex flex-wrap items-center justify-between gap-3">
+      <!-- LIFEISGAMETZ SVG Logo + Zuri Identity -->
+      <div class="flex items-center gap-3">
+        <div id="lifeisgametz-logo-wrap" class="relative w-11 h-11 rounded-2xl bg-obsidian-950 border border-emerald-400/35 flex items-center justify-center shadow-lg shadow-emerald-500/15 shrink-0">
+          <!-- Built-in LIFEISGAMETZ SVG Logo -->
+          <svg id="lifeisgametz-svg" viewBox="0 0 64 64" class="w-9 h-9" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="LIFEISGAMETZ Logo">
+            <defs>
+              <linearGradient id="lgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#10b981" />
+                <stop offset="55%" stop-color="#22d3ee" />
+                <stop offset="100%" stop-color="#f59e0b" />
+              </linearGradient>
+            </defs>
+            <polygon points="32,4 56,18 56,46 32,60 8,46 8,18" fill="#090c1f" stroke="url(#lgGrad)" stroke-width="3.2" />
+            <path d="M20 22 L44 22 M32 22 L32 43 M22 33 L42 33" stroke="url(#lgGrad)" stroke-width="3.4" stroke-linecap="round" fill="none" />
+            <circle cx="32" cy="14" r="3" fill="#f59e0b" />
+            <circle cx="20" cy="43" r="2.6" fill="#10b981" />
+            <circle cx="44" cy="43" r="2.6" fill="#22d3ee" />
+          </svg>
+          <span id="online-indicator" class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-amber-400 border-2 border-obsidian-950"></span>
+        </div>
+
+        <div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <h1 id="header-agent-name" class="text-base sm:text-lg font-extrabold tracking-tight text-white">Zuri</h1>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
+              LIFEISGAMETZ
+            </span>
+          </div>
+          <p class="text-[11px] text-slate-400">
+            Mwandani Wako • Mauzo, Tovuti, YouTube, TikTok &amp; Instagram
+          </p>
+        </div>
+      </div>
+
+      <!-- Primary Step Navigation -->
+      <nav aria-label="Urambazaji wa Zuri" class="flex items-center gap-1 bg-obsidian-950/95 p-1 rounded-2xl border border-slate-800 overflow-x-auto max-w-full">
+        <a href="index.html" class="step-btn px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-1.5 shrink-0"><i class="fa-solid fa-house"></i><span>Nyumbani</span></a>
+        <a href="chat.html" class="step-btn px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-1.5 shrink-0"><span>Story &amp; Simu</span></a>
+        <a href="business.html" class="step-btn px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-1.5 shrink-0"><span>Tovuti &amp; Mauzo</span></a>
+        <a href="creator.html" class="step-btn px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-1.5 shrink-0"><span>YT • TikTok • IG</span><span id="nav-post-badge" class="px-1.5 rounded-full bg-fuchsia-500/25 text-fuchsia-200 text-[10px]">0</span></a>
+        <a href="api-settings.html" class="step-btn px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-1.5 shrink-0"><span>Keys &amp; Sauti</span><span id="nav-keys-badge" class="px-1.5 rounded-full bg-rose-500/25 text-rose-200 text-[10px]">0</span></a>
+        <a href="workspace.html" class="step-btn px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-1.5 shrink-0"><span>Mafaili &amp; Logo</span></a>
+      </nav>
+
+      <!-- Live Voice Call & TTS Controls -->
+      <div class="flex items-center gap-2">
+        <button onclick="toggleLiveCallMode()" id="live-call-btn" class="px-3 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-bold flex items-center gap-1.5 shadow-lg shadow-emerald-600/20 transition shrink-0">
+          <i id="live-call-icon" class="fa-solid fa-phone"></i>
+          <span id="live-call-label">Piga Simu / Live Voice</span>
+        </button>
+        <button onclick="toggleTTS()" id="tts-btn" class="hidden sm:flex px-3 py-2 rounded-xl bg-obsidian-850 hover:bg-obsidian-800 border border-slate-700/80 text-xs font-semibold text-slate-200 items-center gap-1.5 transition shrink-0">
+          <i id="tts-icon" class="fa-solid fa-volume-high text-rose-400"></i>
+          <span id="tts-text">Sauti: ON</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Live Voice Call Banner (Shown when Live Call Mode is active) -->
+  <div id="live-call-banner" class="hidden bg-emerald-950/85 border-b border-emerald-400/40 px-4 py-2.5">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <span class="relative flex h-3 w-3">
+          <span class="call-pulse absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-400"></span>
+        </span>
+        <div>
+          <span id="call-status-text" class="text-xs font-bold text-emerald-200">Simu ya Moja kwa Moja Imewashwa — Zuri anakusikiliza...</span>
+          <p class="text-[11px] text-emerald-100/75">Ongea kwa sauti; Zuri atajibu kwa sauti ya kike yenye mlio laini wa Kiarabu kisha atarudi kukusikiliza.</p>
+        </div>
+      </div>
+      <button onclick="stopLiveCallMode()" class="px-3.5 py-1.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold flex items-center gap-1.5">
+        <i class="fa-solid fa-phone-slash"></i>
+        <span>Kata Simu</span>
+      </button>
+    </div>
+  </div>
+
+  <main class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-4 sm:py-6">
+    <section id="view-keys" class="step-view max-w-4xl mx-auto space-y-5">
+      <!-- Arabic / Female Voice Synthesis Tuning -->
+      <div class="glass-panel rounded-3xl p-6 space-y-4 border-emerald-500/25">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-3">
+          <div>
+            <h2 class="text-base sm:text-lg font-extrabold text-white flex items-center gap-2">
+              <i class="fa-solid fa-ear-listen text-emerald-400"></i> Sauti ya Kike yenye Mlio/Lafudhi ya Kiarabu
+            </h2>
+            <p class="text-xs text-slate-400 mt-0.5">
+              Zuri hutafuta sauti laini ya kike ya Kiarabu (<code class="text-emerald-300">ar-SA</code> / <code class="text-emerald-300">ar-AE</code> / <code class="text-emerald-300">ar-EG</code>) kwenye kifaa chako na kuisawazisha ili isikike nyororo na tulivu.
+            </p>
+          </div>
+          <button onclick="testArabicFemaleVoice()" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold">
+            🎙️ Jaribu Sauti
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div>
+            <label class="block text-[11px] font-semibold text-slate-300 mb-1">Chagua Sauti ya Kifaa</label>
+            <select id="voice-selector-full" onchange="syncVoiceSelect(this.value)" class="w-full bg-obsidian-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+              <option value="">Auto (Kiarabu / Kike)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-[11px] font-semibold text-slate-300 mb-1">
+              Ulaini / Pitch (<span id="pitch-val">1.18</span>)
+            </label>
+            <input id="voice-pitch-range" type="range" min="0.85" max="1.45" step="0.01" value="1.18" oninput="updateVoiceTuning()" class="w-full accent-rose-500 mt-2" />
+          </div>
+          <div>
+            <label class="block text-[11px] font-semibold text-slate-300 mb-1">
+              Mwendo / Rate (<span id="rate-val">0.95</span>)
+            </label>
+            <input id="voice-rate-range" type="range" min="0.75" max="1.25" step="0.01" value="0.95" oninput="updateVoiceTuning()" class="w-full accent-emerald-400 mt-2" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-slate-800/80">
+          <div>
+            <label class="block text-[11px] font-semibold text-amber-300 mb-1">ElevenLabs API Key (Hiari — Sauti ya Studio)</label>
+            <input id="api-elevenlabs" type="password" onchange="saveSettings()" placeholder="sk_..." class="w-full bg-obsidian-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white" />
+          </div>
+          <div>
+            <label class="block text-[11px] font-semibold text-amber-300 mb-1">ElevenLabs Voice ID (Hiari)</label>
+            <input id="voice-elevenlabs-id" type="text" onchange="saveSettings()" placeholder="Mfano: 21m00Tcm4TlvDq8ikWAM" class="w-full bg-obsidian-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white" />
+          </div>
+        </div>
+      </div>
+
+      <!-- 7-Provider AI Keys -->
+      <div class="glass-panel rounded-3xl p-6 space-y-5">
+        <div class="flex flex-wrap items-start justify-between gap-4 border-b border-slate-800 pb-4">
+          <div>
+            <h2 class="text-lg font-extrabold text-white flex items-center gap-2">
+              <i class="fa-solid fa-key text-rose-400"></i> API Keys Zako (Cerebras, Groq, Gemini, OpenRouter, DeepSeek, OpenAI, Claude)
+            </h2>
+            <p class="text-xs text-slate-400 mt-1">
+              Zuri atazungusha keys zako kiotomatiki ikitokea mmoja amekuwa busy au hana quota. Zinahifadhiwa ndani ya kivinjari chako pekee.
+            </p>
+          </div>
+          <button onclick="switchStep('chat')" class="px-3.5 py-2 rounded-xl bg-obsidian-850 hover:bg-obsidian-800 text-xs font-semibold text-slate-200 border border-slate-700">
+            ← Rudi Kwenye Chat
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-obsidian-950/90 border border-slate-800 rounded-2xl p-4 space-y-2">
+            <span class="text-xs font-bold text-fuchsia-300 block">1. Cerebras API Key</span>
+            <input id="api-cerebras" type="password" placeholder="csk-..." class="w-full bg-obsidian-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white" />
+            <input id="model-cerebras" type="text" value="llama-3.3-70b" class="w-full bg-obsidian-900/60 border border-slate-800 rounded-lg px-2.5 py-1 text-[11px] text-slate-300" />
+          </div>
+
+          <div class="bg-obsidian-950/90 border border-slate-800 rounded-2xl p-4 space-y-2">
+            <span class="text-xs font-bold text-rose-300 block">2. Groq API Key</span>
+            <input id="api-groq" type="password" placeholder="gsk_..." class="w-full bg-obsidian-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white" />
+            <input id="model-groq" type="text" value="llama-3.3-70b-versatile" class="w-full bg-obsidian-900/60 border border-slate-800 rounded-lg px-2.5 py-1 text-[11px] text-slate-300" />
+          </div>
+
+          <div class="bg-obsidian-950/90 border border-slate-800 rounded-2xl p-4 space-y-2">
+            <div class="flex justify-between">
+              <span class="text-xs font-bold text-cyan-300">3. Google Gemini API Key</span>
+              <span class="text-[10px] text-emerald-400">Vision + Text</span>
+            </div>
+            <input id="api-gemini" type="password" placeholder="AIza..." class="w-full bg-obsidian-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white" />
+            <input id="model-gemini" type="text" value="gemini-2.5-flash" class="w-full bg-obsidian-900/60 border border-slate-800 rounded-lg px-2.5 py-1 text-[11px] text-slate-300" />
+          </div>
+
+          <div class="bg-obsidian-950/90 border border-slate-800 rounded-2xl p-4 space-y-2">
+            <span class="text-xs font-bold text-indigo-300 block">4. OpenRouter API Key</span>
+            <input id="api-openrouter" type="password" placeholder="sk-or-v1-..." class="w-full bg-obsidian-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white" />
+            <input id="model-openrouter" type="text" value="openrouter/auto" class="w-full bg-obsidian-900/60 border border-slate-800 rounded-lg px-2.5 py-1 text-[11px] text-slate-300" />
+          </div>
+
+          <div class="bg-obsidian-950/90 border border-slate-800 rounded-2xl p-4 space-y-2">
+            <span class="text-xs font-bold text-sky-300 block">5. DeepSeek API Key</span>
+            <input id="api-deepseek" type="password" placeholder="sk-..." class="w-full bg-obsidian-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white" />
+            <input id="model-deepseek" type="text" value="deepseek-chat" class="w-full bg-obsidian-900/60 border border-slate-800 rounded-lg px-2.5 py-1 text-[11px] text-slate-300" />
+          </div>
+
+          <div class="bg-obsidian-950/90 border border-slate-800 rounded-2xl p-4 space-y-2">
+            <div class="flex justify-between">
+              <span class="text-xs font-bold text-emerald-300">6. OpenAI API Key</span>
+              <span class="text-[10px] text-emerald-400">Vision + Text</span>
+            </div>
+            <input id="api-openai" type="password" placeholder="sk-..." class="w-full bg-obsidian-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white" />
+            <input id="model-openai" type="text" value="gpt-4o-mini" class="w-full bg-obsidian-900/60 border border-slate-800 rounded-lg px-2.5 py-1 text-[11px] text-slate-300" />
+          </div>
+
+          <div class="md:col-span-2 bg-obsidian-950/90 border border-slate-800 rounded-2xl p-4 space-y-2">
+            <div class="flex justify-between">
+              <span class="text-xs font-bold text-amber-300">7. Anthropic Claude API Key</span>
+              <span class="text-[10px] text-emerald-400">Vision + Text</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <input id="api-claude" type="password" placeholder="sk-ant-..." class="w-full bg-obsidian-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white" />
+              <input id="model-claude" type="text" value="claude-3-5-sonnet-latest" class="w-full bg-obsidian-900/60 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white" />
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-800">
+          <button onclick="wipeAllKeys()" class="px-4 py-2 rounded-xl bg-rose-500/15 hover:bg-rose-500/25 text-rose-300 border border-rose-500/30 text-xs font-semibold">
+            Futa Keys Zote
+          </button>
+          <button onclick="saveAllApiKeys()" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-rose-500 to-violet-600 text-white text-xs font-bold shadow-lg">
+            💾 Hifadhi Keys Zote
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="assets/app.js"></script>
+</body>
+</html>

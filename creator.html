@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="sw" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zuri — YT • TikTok • IG | LIFEISGAMETZ</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script src="assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body class="min-h-screen flex flex-col selection:bg-rose-500/30 selection:text-rose-200">
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm pointer-events-none"></div>
+
+  <!-- Top Navigation Header -->
+  <header class="sticky top-0 z-40 glass-panel border-b border-rose-500/20">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 py-2.5 flex flex-wrap items-center justify-between gap-3">
+      <!-- LIFEISGAMETZ SVG Logo + Zuri Identity -->
+      <div class="flex items-center gap-3">
+        <div id="lifeisgametz-logo-wrap" class="relative w-11 h-11 rounded-2xl bg-obsidian-950 border border-emerald-400/35 flex items-center justify-center shadow-lg shadow-emerald-500/15 shrink-0">
+          <!-- Built-in LIFEISGAMETZ SVG Logo -->
+          <svg id="lifeisgametz-svg" viewBox="0 0 64 64" class="w-9 h-9" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="LIFEISGAMETZ Logo">
+            <defs>
+              <linearGradient id="lgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#10b981" />
+                <stop offset="55%" stop-color="#22d3ee" />
+                <stop offset="100%" stop-color="#f59e0b" />
+              </linearGradient>
+            </defs>
+            <polygon points="32,4 56,18 56,46 32,60 8,46 8,18" fill="#090c1f" stroke="url(#lgGrad)" stroke-width="3.2" />
+            <path d="M20 22 L44 22 M32 22 L32 43 M22 33 L42 33" stroke="url(#lgGrad)" stroke-width="3.4" stroke-linecap="round" fill="none" />
+            <circle cx="32" cy="14" r="3" fill="#f59e0b" />
+            <circle cx="20" cy="43" r="2.6" fill="#10b981" />
+            <circle cx="44" cy="43" r="2.6" fill="#22d3ee" />
+          </svg>
+          <span id="online-indicator" class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-amber-400 border-2 border-obsidian-950"></span>
+        </div>
+
+        <div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <h1 id="header-agent-name" class="text-base sm:text-lg font-extrabold tracking-tight text-white">Zuri</h1>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
+              LIFEISGAMETZ
+            </span>
+          </div>
+          <p class="text-[11px] text-slate-400">
+            Mwandani Wako • Mauzo, Tovuti, YouTube, TikTok &amp; Instagram
+          </p>
+        </div>
+      </div>
+
+      <!-- Primary Step Navigation -->
+      <nav aria-label="Urambazaji wa Zuri" class="flex items-center gap-1 bg-obsidian-950/95 p-1 rounded-2xl border border-slate-800 overflow-x-auto max-w-full">
+        <a href="index.html" class="step-btn px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-1.5 shrink-0"><i class="fa-solid fa-house"></i><span>Nyumbani</span></a>
+        <a href="chat.html" class="step-btn px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-1.5 shrink-0"><span>Story &amp; Simu</span></a>
+        <a href="business.html" class="step-btn px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-1.5 shrink-0"><span>Tovuti &amp; Mauzo</span></a>
+        <a href="creator.html" class="step-btn px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-1.5 shrink-0"><span>YT • TikTok • IG</span><span id="nav-post-badge" class="px-1.5 rounded-full bg-fuchsia-500/25 text-fuchsia-200 text-[10px]">0</span></a>
+        <a href="api-settings.html" class="step-btn px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-1.5 shrink-0"><span>Keys &amp; Sauti</span><span id="nav-keys-badge" class="px-1.5 rounded-full bg-rose-500/25 text-rose-200 text-[10px]">0</span></a>
+        <a href="workspace.html" class="step-btn px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-1.5 shrink-0"><span>Mafaili &amp; Logo</span></a>
+      </nav>
+
+      <!-- Live Voice Call & TTS Controls -->
+      <div class="flex items-center gap-2">
+        <button onclick="toggleLiveCallMode()" id="live-call-btn" class="px-3 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-bold flex items-center gap-1.5 shadow-lg shadow-emerald-600/20 transition shrink-0">
+          <i id="live-call-icon" class="fa-solid fa-phone"></i>
+          <span id="live-call-label">Piga Simu / Live Voice</span>
+        </button>
+        <button onclick="toggleTTS()" id="tts-btn" class="hidden sm:flex px-3 py-2 rounded-xl bg-obsidian-850 hover:bg-obsidian-800 border border-slate-700/80 text-xs font-semibold text-slate-200 items-center gap-1.5 transition shrink-0">
+          <i id="tts-icon" class="fa-solid fa-volume-high text-rose-400"></i>
+          <span id="tts-text">Sauti: ON</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Live Voice Call Banner (Shown when Live Call Mode is active) -->
+  <div id="live-call-banner" class="hidden bg-emerald-950/85 border-b border-emerald-400/40 px-4 py-2.5">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <span class="relative flex h-3 w-3">
+          <span class="call-pulse absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-400"></span>
+        </span>
+        <div>
+          <span id="call-status-text" class="text-xs font-bold text-emerald-200">Simu ya Moja kwa Moja Imewashwa — Zuri anakusikiliza...</span>
+          <p class="text-[11px] text-emerald-100/75">Ongea kwa sauti; Zuri atajibu kwa sauti ya kike yenye mlio laini wa Kiarabu kisha atarudi kukusikiliza.</p>
+        </div>
+      </div>
+      <button onclick="stopLiveCallMode()" class="px-3.5 py-1.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold flex items-center gap-1.5">
+        <i class="fa-solid fa-phone-slash"></i>
+        <span>Kata Simu</span>
+      </button>
+    </div>
+  </div>
+
+  <main class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-4 sm:py-6">
+    <section id="view-creator" class="step-view space-y-5">
+      <!-- Core Channels Strip: YouTube, TikTok, Instagram -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- YouTube -->
+        <div class="neon-card rounded-3xl p-4 flex flex-col justify-between gap-3 border-rose-500/35">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="inline-flex items-center gap-2 text-sm font-extrabold text-white">
+                <i class="fa-brands fa-youtube text-rose-500 text-lg"></i> YouTube
+              </span>
+              <span class="px-2 py-0.5 rounded-full bg-rose-500/15 text-rose-300 text-[10px] font-bold">KUTANGAZA</span>
+            </div>
+            <p class="text-[11px] text-slate-400 truncate mt-1">https://www.youtube.com/@KelvinPela-x1w</p>
+            <p class="text-xs text-slate-300 mt-2">Title, Hook ya sekunde 30, muundo wa video/Shorts, description na tags.</p>
+          </div>
+          <div class="flex items-center justify-between pt-2 border-t border-slate-800/80">
+            <label class="inline-flex items-center gap-1.5 text-xs text-slate-300 cursor-pointer">
+              <input type="checkbox" id="perm-youtube" checked onchange="saveChannelPerms()" class="accent-rose-500 rounded" />
+              <span>Ruhusa ya Maudhui</span>
+            </label>
+            <a href="https://www.youtube.com/@KelvinPela-x1w" target="_blank" rel="noopener" class="text-[11px] text-rose-300 hover:underline font-semibold">Fungua ↗</a>
+          </div>
+        </div>
+
+        <!-- TikTok -->
+        <div class="neon-card rounded-3xl p-4 flex flex-col justify-between gap-3 border-cyan-400/35">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="inline-flex items-center gap-2 text-sm font-extrabold text-white">
+                <i class="fa-brands fa-tiktok text-cyan-300 text-base"></i> TikTok
+              </span>
+              <span class="px-2 py-0.5 rounded-full bg-cyan-500/15 text-cyan-200 text-[10px] font-bold">KUTANGAZA</span>
+            </div>
+            <p class="text-[11px] text-slate-400 truncate mt-1">https://tiktok.com/@i_mkelvin</p>
+            <p class="text-xs text-slate-300 mt-2">Hook ya sekunde 3, script fupi ya kuvutia watazamaji, shot list na hashtags.</p>
+          </div>
+          <div class="flex items-center justify-between pt-2 border-t border-slate-800/80">
+            <label class="inline-flex items-center gap-1.5 text-xs text-slate-300 cursor-pointer">
+              <input type="checkbox" id="perm-tiktok" checked onchange="saveChannelPerms()" class="accent-cyan-400 rounded" />
+              <span>Ruhusa ya Maudhui</span>
+            </label>
+            <a href="https://tiktok.com/@i_mkelvin" target="_blank" rel="noopener" class="text-[11px] text-cyan-300 hover:underline font-semibold">Fungua ↗</a>
+          </div>
+        </div>
+
+        <!-- Instagram -->
+        <div class="neon-card rounded-3xl p-4 flex flex-col justify-between gap-3 border-fuchsia-500/35">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="inline-flex items-center gap-2 text-sm font-extrabold text-white">
+                <i class="fa-brands fa-instagram text-fuchsia-400 text-lg"></i> Instagram
+              </span>
+              <span class="px-2 py-0.5 rounded-full bg-fuchsia-500/15 text-fuchsia-200 text-[10px] font-bold">KUTANGAZA</span>
+            </div>
+            <p class="text-[11px] text-slate-400 truncate mt-1">https://www.instagram.com/kelvi.n6593?gwpx=bTI4cnlvb25weGhm</p>
+            <p class="text-xs text-slate-300 mt-2">Caption ya kuvutia, wazo la Reel/Carousel/Story, CTA na hashtags.</p>
+          </div>
+          <div class="flex items-center justify-between pt-2 border-t border-slate-800/80">
+            <label class="inline-flex items-center gap-1.5 text-xs text-slate-300 cursor-pointer">
+              <input type="checkbox" id="perm-instagram" checked onchange="saveChannelPerms()" class="accent-fuchsia-500 rounded" />
+              <span>Ruhusa ya Maudhui</span>
+            </label>
+            <a href="https://www.instagram.com/kelvi.n6593?gwpx=bTI4cnlvb25weGhm" target="_blank" rel="noopener" class="text-[11px] text-fuchsia-300 hover:underline font-semibold">Fungua ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content Generator & Queue + WhatsApp Approval Gate -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+        <!-- Generator & Draft Composer (7 Cols) -->
+        <div class="lg:col-span-7 glass-panel rounded-3xl p-5 sm:p-6 space-y-4">
+          <div>
+            <h2 class="text-base sm:text-lg font-extrabold text-white flex items-center gap-2">
+              <i class="fa-solid fa-clapperboard text-fuchsia-400"></i> Studio ya Maudhui ya Kutangazia Biashara
+            </h2>
+            <p class="text-xs text-slate-400 mt-1">
+              Chagua jukwaa (YouTube, TikTok, Instagram, au Zote 3) na mada/bidhaa—Zuri atatengeneza maudhui yaliyolenga mauzo ya jukwaa hilo.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-[11px] font-semibold text-slate-300 mb-1">Chagua Jukwaa</label>
+              <select id="creator-platform" class="w-full bg-obsidian-950 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-fuchsia-400">
+                <option value="ALL_3">🌟 Zote 3 (YouTube + TikTok + Instagram)</option>
+                <option value="YouTube">▶️ YouTube Pekee (Title, Hook, Script, Description, Tags)</option>
+                <option value="TikTok">🎵 TikTok Pekee (Hook 3s, Script Fupi, Visuals, Hashtags)</option>
+                <option value="Instagram">📸 Instagram Pekee (Caption, Reel/Carousel, CTA, Hashtags)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-[11px] font-semibold text-slate-300 mb-1">Bidhaa / Game / Ofa ya Kutangaza</label>
+              <input id="creator-topic" type="text" placeholder="Mfano: Kifurushi kipya cha games / ofa ya wiki hii..." class="w-full bg-obsidian-950 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-fuchsia-400" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-[11px] font-semibold text-slate-300 mb-1">Social Webhook / API Endpoint (Hiari ya Kutuma Moja kwa Moja)</label>
+            <input id="social-webhook-url" type="url" onchange="saveSettings()" placeholder="https://hook.eu2.make.com/... au API yako ya kuchapisha" class="w-full bg-obsidian-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400" />
+          </div>
+
+          <button onclick="generatePlatformContent()" id="gen-content-btn" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-rose-500 via-fuchsia-500 to-violet-600 hover:opacity-95 text-white text-xs font-bold shadow-lg">
+            ✨ Zuri Tengeneza Maudhui ya Kutangazia Biashara
+          </button>
+
+          <div>
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+              <span class="text-xs font-bold text-fuchsia-200">Rasimu Inayoweza Kuhaririwa:</span>
+              <div class="flex gap-1.5">
+                <button onclick="copyTextFrom('creator-draft-box')" class="px-2.5 py-1 rounded-lg bg-obsidian-850 hover:bg-obsidian-800 text-[11px] text-slate-300 border border-slate-700">
+                  Nakili
+                </button>
+                <button onclick="queueCreatorDraft()" class="px-3 py-1 rounded-lg bg-violet-600 hover:bg-violet-500 text-[11px] text-white font-bold">
+                  Weka Kwenye Foleni →
+                </button>
+              </div>
+            </div>
+            <textarea id="creator-draft-box" rows="11" placeholder="Maudhui ya YouTube, TikTok na Instagram yatatokea hapa ili uyakague au kuyahariri kabla ya kuweka kwenye foleni au kutuma..." class="w-full bg-obsidian-950 border border-slate-800 rounded-2xl p-3.5 text-xs text-slate-100 leading-relaxed focus:outline-none focus:border-fuchsia-400"></textarea>
+          </div>
+        </div>
+
+        <!-- Right Column: Content Queue + WhatsApp Strict Approval Lock (5 Cols) -->
+        <div class="lg:col-span-5 space-y-4">
+          <!-- Scheduled / Queued Content -->
+          <div class="glass-panel rounded-3xl p-5 space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-extrabold text-white flex items-center gap-2">
+                <i class="fa-solid fa-layer-group text-violet-400"></i> Foleni ya Maudhui (<span id="queue-count">0</span>)
+              </h3>
+            </div>
+            <div id="content-queue-list" class="space-y-2.5 max-h-72 overflow-y-auto pr-1"></div>
+          </div>
+
+          <!-- WhatsApp Strict Approval Lock -->
+          <div class="rounded-3xl bg-amber-950/65 border border-amber-400/50 p-4 space-y-2.5">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-extrabold text-amber-200 flex items-center gap-1.5">
+                <i class="fa-brands fa-whatsapp text-emerald-400 text-sm"></i> WhatsApp — Lidhaa Yako Lazima
+              </span>
+              <a href="https://wa.me/qr/H263ERHNEULEL1" target="_blank" rel="noopener" class="text-[11px] text-emerald-300 hover:underline font-semibold">WhatsApp QR ↗</a>
+            </div>
+            <p class="text-[11px] text-amber-100/80 leading-relaxed">
+              Zuri hawezi kujibu ujumbe wala kutuma chochote WhatsApp bila lidhaa yako. Rasimu za WhatsApp zinakaa chini kwa idhini yako tu:
+            </p>
+            <div class="flex gap-2">
+              <input id="wa-quick-draft-input" type="text" placeholder="Mfano: Jibu mteja anayeuliza bei na malipo..." class="flex-1 bg-obsidian-950 border border-amber-500/30 rounded-xl px-3 py-1.5 text-xs text-white" />
+              <button onclick="addWhatsAppApprovalItem()" class="px-3 py-1.5 rounded-xl bg-amber-500/25 hover:bg-amber-500/35 text-amber-200 border border-amber-400/40 text-xs font-bold shrink-0">
+                + Rasimu
+              </button>
+            </div>
+            <div id="wa-approval-list" class="space-y-2 max-h-52 overflow-y-auto"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="assets/app.js"></script>
+</body>
+</html>
