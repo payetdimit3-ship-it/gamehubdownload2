@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="sw" class="dark"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Zuri — Admin | LIFEISGAMETZ</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+<script>tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: {
+            obsidian: {
+              950: '#060712',
+              900: '#0b0e23',
+              850: '#121636',
+              800: '#191f4a'
+            }
+          }
+        }
+      }
+    };
+</script><style>:root{
+  --rose:#fb4f8a; --violet:#8b5cf6; --cyan:#22d3ee; --emerald:#10b981; --amber:#fbbf24;
+}
+html{scroll-behavior:smooth}
+body{
+  background-color:#05060f;
+  background-image:
+    radial-gradient(60rem 40rem at 8% -5%, rgba(251,79,138,.22), transparent 60%),
+    radial-gradient(55rem 38rem at 100% 0%, rgba(139,92,246,.24), transparent 60%),
+    radial-gradient(50rem 36rem at 50% 105%, rgba(34,211,238,.14), transparent 62%),
+    linear-gradient(180deg,#05060f 0%,#080a1c 100%);
+  background-attachment:fixed;
+  color:#f8fafc;
+  font-family:'Inter',sans-serif;
+  position:relative;
+  overflow-x:hidden;
+}
+/* grid texture */
+body::before{
+  content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+  background-size:44px 44px;
+  mask-image:radial-gradient(ellipse at 50% 20%,#000 20%,transparent 75%);
+  -webkit-mask-image:radial-gradient(ellipse at 50% 20%,#000 20%,transparent 75%);
+}
+/* floating glow orbs */
+body::after{
+  content:"";position:fixed;z-index:-1;pointer-events:none;
+  width:34rem;height:34rem;left:-10rem;bottom:-12rem;border-radius:50%;
+  background:radial-gradient(circle,rgba(16,185,129,.20),transparent 65%);
+  filter:blur(30px);animation:floaty 14s ease-in-out infinite;
+}
+@keyframes floaty{0%,100%{transform:translate(0,0)}50%{transform:translate(8rem,-5rem)}}
+
+h1,h2,h3,.font-extrabold{font-family:'Space Grotesk','Inter',sans-serif;letter-spacing:-.01em}
+
+/* header */
+header.glass-panel{
+  background:linear-gradient(180deg,rgba(14,17,44,.92),rgba(9,11,30,.82));
+  border-bottom:1px solid transparent;
+  border-image:linear-gradient(90deg,transparent,rgba(251,79,138,.55),rgba(139,92,246,.55),rgba(34,211,238,.45),transparent) 1;
+}
+
+/* panels & cards */
+.glass-panel{
+  background:linear-gradient(160deg,rgba(22,26,64,.82),rgba(12,15,40,.86));
+  backdrop-filter:blur(20px) saturate(140%);
+  -webkit-backdrop-filter:blur(20px) saturate(140%);
+  border:1px solid rgba(255,255,255,.09);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+}
+.neon-card{
+  position:relative;
+  background:linear-gradient(160deg,rgba(20,24,58,.88),rgba(10,12,34,.92));
+  border:1px solid rgba(139,92,246,.28);
+  transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;
+}
+a.neon-card:hover,.neon-card:hover{
+  transform:translateY(-3px);
+  border-color:rgba(251,79,138,.55);
+  box-shadow:0 18px 44px -18px rgba(251,79,138,.45),0 10px 30px -16px rgba(34,211,238,.35);
+}
+.zuri-glow{
+  box-shadow:0 20px 60px -20px rgba(251,79,138,.35),0 14px 40px -18px rgba(139,92,246,.4),inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+/* buttons & inputs */
+button,.step-btn{transition:transform .15s ease,filter .2s ease,background .2s ease}
+button:not(:disabled):hover{filter:brightness(1.1)}
+button:not(:disabled):active{transform:scale(.97)}
+.step-btn:hover{background:rgba(139,92,246,.15)}
+input,textarea,select{
+  background-color:rgba(8,10,28,.75)!important;
+  border-color:rgba(139,92,246,.28)!important;
+  transition:border-color .2s,box-shadow .2s;
+}
+input:focus,textarea:focus,select:focus{
+  outline:none;border-color:rgba(251,79,138,.7)!important;
+  box-shadow:0 0 0 3px rgba(251,79,138,.18);
+}
+::placeholder{color:#64709b}
+
+/* scrollbar */
+::-webkit-scrollbar{width:7px;height:7px}
+::-webkit-scrollbar-track{background:#070918}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#fb4f8a,#8b5cf6);border-radius:9999px}
+
+/* animations */
+@keyframes popIn{from{opacity:0;transform:translateY(8px) scale(.985)}to{opacity:1;transform:none}}
+.anim-pop{animation:popIn .25s ease-out forwards}
+@keyframes pulseRing{0%,100%{transform:scale(1);opacity:.75}50%{transform:scale(1.18);opacity:.25}}
+.call-pulse{animation:pulseRing 1.5s infinite ease-in-out}
+main>section{animation:popIn .4s ease-out both}
+.hero-title{
+  background:linear-gradient(90deg,#fff,#fda4c4 40%,#c4b5fd 70%,#67e8f9);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body class="min-h-screen">
+<header class="sticky top-0 z-40 glass-panel px-4 py-3 flex items-center justify-between">
+  <h1 class="text-lg font-extrabold">🛡️ Zuri Admin</h1>
+  <a href="index.html" class="px-3 py-2 rounded-xl bg-obsidian-850 border border-slate-700 text-xs font-semibold">← Rudi kwenye App</a>
+</header>
+<div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 text-xs px-4 py-2 rounded-2xl bg-obsidian-850 border border-rose-400/40 hidden"></div>
+<main class="max-w-4xl mx-auto p-4 space-y-5">
+  <section class="glass-panel rounded-3xl p-5 space-y-4">
+    <h2 class="font-extrabold">🔑 API Keys za AI (zinabaki server — watumiaji hawaziioni)</h2>
+    <div id="prov" class="space-y-3"></div>
+    <div class="flex flex-wrap items-center gap-3">
+      <label class="text-xs text-slate-300">Provider mkuu:</label>
+      <select id="active" class="rounded-xl px-3 py-2 text-xs text-white border"></select>
+      <button onclick="saveKeys()" class="ml-auto px-5 py-2.5 rounded-xl bg-gradient-to-r from-rose-500 to-violet-600 text-white text-xs font-bold">💾 Hifadhi</button>
+    </div>
+    <p class="text-[11px] text-slate-400">Acha sehemu ya key tupu kama hutaki kuibadilisha. Key inayoonyeshwa ni •••• na herufi 4 za mwisho tu.</p>
+  </section>
+  <section class="glass-panel rounded-3xl p-5 space-y-3">
+    <h2 class="font-extrabold">👥 Watumiaji <span id="ucount" class="text-xs text-slate-400"></span></h2>
+    <div class="overflow-x-auto"><table class="w-full text-xs"><thead class="text-slate-400 text-left"><tr><th class="py-2">Email</th><th>Leo</th><th>Kikomo/siku</th><th>Hali</th></tr></thead><tbody id="users"></tbody></table></div>
+  </section>
+  <section class="glass-panel rounded-3xl p-5 space-y-3">
+    <h2 class="font-extrabold">⬆️ Sasisha App (upload faili)</h2>
+    <p class="text-[11px] text-slate-400">Chagua faili moja au zaidi za .html (mfano chat.html). Zinaanza kutumika mara moja bila kugusa keys au data za watumiaji. Ukikosea, bonyeza "Rudisha nyuma".</p>
+    <input id="files" type="file" accept=".html" multiple class="text-xs" />
+    <button onclick="upload()" class="px-5 py-2.5 rounded-xl bg-emerald-600 text-white text-xs font-bold">Pakia &amp; Tumia</button>
+    <div id="flist" class="space-y-1 pt-2"></div>
+  </section>
+</main>
+<script>
+/* ---- Zuri core: login, tokens, sync ---- */
+const Z = {
+  get tok() { try { return JSON.parse(localStorage.getItem('zuri_auth') || 'null'); } catch (_) { return null; } },
+  save(t) { localStorage.setItem('zuri_auth', JSON.stringify(t)); },
+  async refresh() {
+    const t = this.tok; if (!t || !t.refresh_token) return false;
+    try {
+      const r = await fetch('/api/auth/refresh', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ refresh_token: t.refresh_token }) });
+      if (!r.ok) return false;
+      this.save(await r.json()); return true;
+    } catch (_) { return false; }
+  },
+  async api(path, opt = {}) {
+    const go = () => fetch(path, {
+      method: opt.method || 'GET',
+      headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + ((this.tok || {}).access_token || '') },
+      body: opt.body === undefined ? undefined : (typeof opt.body === 'string' ? opt.body : JSON.stringify(opt.body))
+    });
+    let r = await go();
+    if (r.status === 401 && await this.refresh()) r = await go();
+    if (r.status === 401) { this.clear(); location.href = 'login.html'; throw new Error('Session imeisha'); }
+    return r;
+  },
+  clear() {
+    Object.keys(localStorage).filter(k => k.startsWith('zuri_lg_') || k === 'zuri_auth' || k === 'zuri_uid' || k === 'zuri_dirty').forEach(k => localStorage.removeItem(k));
+  },
+  async logout() {
+    try { await pushNow(); } catch (_) {}
+    this.clear(); location.href = 'login.html';
+  }
+};
+function collectData() {
+  const o = {};
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (!k.startsWith('zuri_lg_') || k.endsWith('_keys_v4') || k.endsWith('_models_v4')) continue;
+    let v = localStorage.getItem(k);
+    if (k === 'zuri_lg_chat_v4') {
+      try { v = JSON.stringify(JSON.parse(v).slice(-60).map(m => { const c = { ...m }; delete c.imageBase64; delete c.imageDataUrl; return c; })); } catch (_) {}
+    }
+    o[k] = v;
+  }
+  return o;
+}
+let _pushTimer = null;
+function markDirty(k) {
+  if (/_keys_v4$|_models_v4$/.test(k)) return;
+  try { localStorage.setItem('zuri_dirty', '1'); } catch (_) {}
+  clearTimeout(_pushTimer); _pushTimer = setTimeout(pushNow, 800);
+}
+async function pushNow() {
+  if (!Z.tok) return;
+  const r = await Z.api('/api/data', { method: 'PUT', body: { data: collectData() } });
+  if (r.ok) localStorage.removeItem('zuri_dirty');
+}
+window.addEventListener('pagehide', () => {
+  if (Z.tok && localStorage.getItem('zuri_dirty')) {
+    try { fetch('/api/data', { method: 'PUT', keepalive: true, headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + Z.tok.access_token }, body: JSON.stringify({ data: collectData() }) }); } catch (_) {}
+  }
+});
+
+const PROV = ['cerebras','groq','gemini','openrouter','deepseek','openai','claude'];
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function say(t) { const e = $('toast'); e.textContent = t; e.classList.remove('hidden'); setTimeout(() => e.classList.add('hidden'), 3000); }
+async function jget(p, o) { const r = await Z.api(p, o); const d = await r.json().catch(() => ({})); if (!r.ok) throw new Error(d.error || 'Hitilafu'); return d; }
+async function init() {
+  if (!Z.tok) { location.href = 'login.html'; return; }
+  try { const me = await jget('/api/me'); if (me.role !== 'admin') { location.href = 'index.html'; return; } } catch (_) { return; }
+  loadKeys(); loadUsers(); loadFiles();
+}
+async function loadKeys() {
+  const d = await jget('/api/admin/secrets');
+  $('prov').innerHTML = PROV.map(p => `<div class="grid grid-cols-1 sm:grid-cols-12 gap-2 items-center">
+    <div class="sm:col-span-2 text-xs font-bold uppercase">${p} <span class="${d.providers[p].hasKey ? 'text-emerald-400' : 'text-slate-500'}">${d.providers[p].hasKey ? d.providers[p].masked : '—'}</span></div>
+    <input id="k-${p}" type="password" placeholder="Key mpya (acha tupu kuacha ilivyo)" class="sm:col-span-6 rounded-xl px-3 py-2 text-xs text-white border" />
+    <input id="m-${p}" value="${esc(d.providers[p].model)}" class="sm:col-span-3 rounded-xl px-3 py-2 text-xs text-white border" />
+    <button onclick="rm('${p}')" class="sm:col-span-1 text-[11px] text-rose-300">Futa</button></div>`).join('');
+  $('active').innerHTML = '<option value="auto">Auto (zote kwa zamu)</option>' + PROV.map(p => `<option value="${p}">${p}</option>`).join('');
+  $('active').value = d.active_provider;
+}
+async function saveKeys() {
+  const keys = {}, models = {};
+  PROV.forEach(p => { keys[p] = $('k-' + p).value; models[p] = $('m-' + p).value; });
+  try { await jget('/api/admin/secrets', { method: 'PUT', body: { keys, models, active_provider: $('active').value } }); say('Zimehifadhiwa ✅'); loadKeys(); } catch (e) { say(e.message); }
+}
+async function rm(p) { if (!confirm('Futa key ya ' + p + '?')) return; try { await jget('/api/admin/secrets', { method: 'PUT', body: { remove: [p] } }); loadKeys(); } catch (e) { say(e.message); } }
+async function loadUsers() {
+  const d = await jget('/api/admin/users');
+  $('ucount').textContent = '(' + d.users.length + ')';
+  $('users').innerHTML = d.users.map(u => `<tr class="border-t border-slate-800"><td class="py-2 pr-2">${esc(u.email)}${u.role === 'admin' ? ' <span class="text-amber-300">(admin)</span>' : ''}</td><td>${u.today}</td>
+    <td><input type="number" min="0" value="${u.daily_limit}" onchange="lim('${u.id}',this.value)" class="w-20 rounded-lg px-2 py-1 text-white border" /></td>
+    <td>${u.role === 'admin' ? '' : `<button onclick="tog('${u.id}',${!u.active})" class="px-3 py-1 rounded-lg ${u.active ? 'bg-emerald-600/30 text-emerald-200' : 'bg-rose-600/30 text-rose-200'}">${u.active ? 'Hai — zima' : 'Imezimwa — washa'}</button>`}</td></tr>`).join('');
+}
+async function lim(id, v) { try { await jget('/api/admin/users/' + id, { method: 'PATCH', body: { daily_limit: parseInt(v, 10) } }); say('Kikomo kimebadilishwa'); } catch (e) { say(e.message); } }
+async function tog(id, a) { try { await jget('/api/admin/users/' + id, { method: 'PATCH', body: { active: a } }); loadUsers(); } catch (e) { say(e.message); } }
+async function loadFiles() {
+  const d = await jget('/api/admin/files');
+  const seen = new Set();
+  $('flist').innerHTML = d.files.length ? d.files.map(f => {
+    const first = !seen.has(f.name); seen.add(f.name);
+    return `<div class="flex items-center justify-between text-xs border-t border-slate-800 py-1.5"><span>${esc(f.name)} <span class="text-slate-500">${new Date(f.created_at).toLocaleString()} • ${Math.round(f.size / 1024)}KB</span> ${first ? '<span class="text-emerald-400">(linatumika)</span>' : ''}</span>${first ? `<button onclick="rb('${f.name}')" class="text-rose-300 font-semibold">Rudisha nyuma</button>` : ''}</div>`;
+  }).join('') : '<p class="text-xs text-slate-400">Hakuna sasisho bado — app inatumia mafaili ya GitHub.</p>';
+}
+async function upload() {
+  const fl = [...$('files').files]; if (!fl.length) return say('Chagua faili kwanza');
+  const files = await Promise.all(fl.map(async f => ({ name: f.name.toLowerCase(), content: await f.text() })));
+  try { const r = await jget('/api/admin/files', { method: 'POST', body: { files } }); say('Imepakiwa: ' + r.count + ' ✅'); $('files').value = ''; loadFiles(); } catch (e) { say(e.message); }
+}
+async function rb(name) { if (!confirm('Rudisha nyuma ' + name + '?')) return; try { await jget('/api/admin/files/rollback', { method: 'POST', body: { name } }); say('Imerudishwa'); loadFiles(); } catch (e) { say(e.message); } }
+init();
+</script></body></html>

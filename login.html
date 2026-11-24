@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="sw" class="dark"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Zuri — Ingia | LIFEISGAMETZ</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+<script>tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: {
+            obsidian: {
+              950: '#060712',
+              900: '#0b0e23',
+              850: '#121636',
+              800: '#191f4a'
+            }
+          }
+        }
+      }
+    };
+</script><style>:root{
+  --rose:#fb4f8a; --violet:#8b5cf6; --cyan:#22d3ee; --emerald:#10b981; --amber:#fbbf24;
+}
+html{scroll-behavior:smooth}
+body{
+  background-color:#05060f;
+  background-image:
+    radial-gradient(60rem 40rem at 8% -5%, rgba(251,79,138,.22), transparent 60%),
+    radial-gradient(55rem 38rem at 100% 0%, rgba(139,92,246,.24), transparent 60%),
+    radial-gradient(50rem 36rem at 50% 105%, rgba(34,211,238,.14), transparent 62%),
+    linear-gradient(180deg,#05060f 0%,#080a1c 100%);
+  background-attachment:fixed;
+  color:#f8fafc;
+  font-family:'Inter',sans-serif;
+  position:relative;
+  overflow-x:hidden;
+}
+/* grid texture */
+body::before{
+  content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+  background-size:44px 44px;
+  mask-image:radial-gradient(ellipse at 50% 20%,#000 20%,transparent 75%);
+  -webkit-mask-image:radial-gradient(ellipse at 50% 20%,#000 20%,transparent 75%);
+}
+/* floating glow orbs */
+body::after{
+  content:"";position:fixed;z-index:-1;pointer-events:none;
+  width:34rem;height:34rem;left:-10rem;bottom:-12rem;border-radius:50%;
+  background:radial-gradient(circle,rgba(16,185,129,.20),transparent 65%);
+  filter:blur(30px);animation:floaty 14s ease-in-out infinite;
+}
+@keyframes floaty{0%,100%{transform:translate(0,0)}50%{transform:translate(8rem,-5rem)}}
+
+h1,h2,h3,.font-extrabold{font-family:'Space Grotesk','Inter',sans-serif;letter-spacing:-.01em}
+
+/* header */
+header.glass-panel{
+  background:linear-gradient(180deg,rgba(14,17,44,.92),rgba(9,11,30,.82));
+  border-bottom:1px solid transparent;
+  border-image:linear-gradient(90deg,transparent,rgba(251,79,138,.55),rgba(139,92,246,.55),rgba(34,211,238,.45),transparent) 1;
+}
+
+/* panels & cards */
+.glass-panel{
+  background:linear-gradient(160deg,rgba(22,26,64,.82),rgba(12,15,40,.86));
+  backdrop-filter:blur(20px) saturate(140%);
+  -webkit-backdrop-filter:blur(20px) saturate(140%);
+  border:1px solid rgba(255,255,255,.09);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+}
+.neon-card{
+  position:relative;
+  background:linear-gradient(160deg,rgba(20,24,58,.88),rgba(10,12,34,.92));
+  border:1px solid rgba(139,92,246,.28);
+  transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;
+}
+a.neon-card:hover,.neon-card:hover{
+  transform:translateY(-3px);
+  border-color:rgba(251,79,138,.55);
+  box-shadow:0 18px 44px -18px rgba(251,79,138,.45),0 10px 30px -16px rgba(34,211,238,.35);
+}
+.zuri-glow{
+  box-shadow:0 20px 60px -20px rgba(251,79,138,.35),0 14px 40px -18px rgba(139,92,246,.4),inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+/* buttons & inputs */
+button,.step-btn{transition:transform .15s ease,filter .2s ease,background .2s ease}
+button:not(:disabled):hover{filter:brightness(1.1)}
+button:not(:disabled):active{transform:scale(.97)}
+.step-btn:hover{background:rgba(139,92,246,.15)}
+input,textarea,select{
+  background-color:rgba(8,10,28,.75)!important;
+  border-color:rgba(139,92,246,.28)!important;
+  transition:border-color .2s,box-shadow .2s;
+}
+input:focus,textarea:focus,select:focus{
+  outline:none;border-color:rgba(251,79,138,.7)!important;
+  box-shadow:0 0 0 3px rgba(251,79,138,.18);
+}
+::placeholder{color:#64709b}
+
+/* scrollbar */
+::-webkit-scrollbar{width:7px;height:7px}
+::-webkit-scrollbar-track{background:#070918}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#fb4f8a,#8b5cf6);border-radius:9999px}
+
+/* animations */
+@keyframes popIn{from{opacity:0;transform:translateY(8px) scale(.985)}to{opacity:1;transform:none}}
+.anim-pop{animation:popIn .25s ease-out forwards}
+@keyframes pulseRing{0%,100%{transform:scale(1);opacity:.75}50%{transform:scale(1.18);opacity:.25}}
+.call-pulse{animation:pulseRing 1.5s infinite ease-in-out}
+main>section{animation:popIn .4s ease-out both}
+.hero-title{
+  background:linear-gradient(90deg,#fff,#fda4c4 40%,#c4b5fd 70%,#67e8f9);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+<div class="glass-panel zuri-glow rounded-3xl p-7 w-full max-w-sm space-y-5">
+  <div class="text-center">
+    <h1 class="hero-title text-3xl font-extrabold">Zuri</h1>
+    <p class="text-xs text-slate-400 mt-1">Mwandani wako wa biashara • LIFEISGAMETZ</p>
+  </div>
+  <div class="grid grid-cols-2 gap-1 bg-obsidian-950 p-1 rounded-2xl border border-slate-800">
+    <button id="t-in" onclick="mode('in')" class="py-2 rounded-xl text-xs font-bold">Ingia</button>
+    <button id="t-up" onclick="mode('up')" class="py-2 rounded-xl text-xs font-bold">Jisajili (Bure)</button>
+  </div>
+  <form onsubmit="go(event)" class="space-y-3">
+    <input id="em" type="email" required autocomplete="email" placeholder="Email yako" class="w-full rounded-xl px-3 py-3 text-sm text-white border" />
+    <input id="pw" type="password" required minlength="6" autocomplete="current-password" placeholder="Password (angalau herufi 6)" class="w-full rounded-xl px-3 py-3 text-sm text-white border" />
+    <button id="btn" class="w-full py-3 rounded-xl bg-gradient-to-r from-rose-500 to-violet-600 text-white font-bold text-sm">Ingia</button>
+  </form>
+  <p id="msg" class="text-xs text-center text-rose-300 min-h-[1rem]"></p>
+</div>
+<script>
+let m = 'in';
+if (localStorage.getItem('zuri_auth')) location.href = 'index.html';
+function mode(x) {
+  m = x;
+  document.getElementById('t-in').className = 'py-2 rounded-xl text-xs font-bold ' + (x === 'in' ? 'bg-gradient-to-r from-rose-500 to-violet-600 text-white' : 'text-slate-300');
+  document.getElementById('t-up').className = 'py-2 rounded-xl text-xs font-bold ' + (x === 'up' ? 'bg-gradient-to-r from-rose-500 to-violet-600 text-white' : 'text-slate-300');
+  document.getElementById('btn').textContent = x === 'in' ? 'Ingia' : 'Fungua Akaunti';
+  document.getElementById('pw').autocomplete = x === 'in' ? 'current-password' : 'new-password';
+  document.getElementById('msg').textContent = '';
+}
+mode('in');
+async function go(e) {
+  e.preventDefault();
+  const b = document.getElementById('btn'), msg = document.getElementById('msg');
+  b.disabled = true; msg.textContent = '';
+  try {
+    const r = await fetch('/api/auth/' + (m === 'in' ? 'login' : 'signup'), {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: document.getElementById('em').value.trim(), password: document.getElementById('pw').value })
+    });
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.error || 'Imeshindwa');
+    localStorage.setItem('zuri_auth', JSON.stringify(d));
+    location.href = 'index.html';
+  } catch (err) { msg.textContent = err.message; b.disabled = false; }
+}
+</script></body></html>
