@@ -2,12 +2,20 @@
 <html lang="sw" class="dark">
 <head>
   <meta charset="UTF-8" />
+  <meta name="theme-color" content="#05060f" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E✨%3C/text%3E%3C/svg%3E" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Zuri — Nyumbani | LIFEISGAMETZ</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <script>tailwind.config = {
+  <script src="config.js"></script>
+  <script>if (typeof tailwind === 'undefined') { window.tailwind = {}; }
+tailwind.config = {
       darkMode: 'class',
       theme: {
         extend: {
@@ -124,6 +132,40 @@ main>section{animation:popIn .4s ease-out both}
   -webkit-background-clip:text;background-clip:text;color:transparent;
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ===== v6: kichwa cha ukurasa, menyu ya chini, vipengele vya pamoja ===== */
+.page-hero{display:flex;align-items:center;gap:14px;margin:2px 2px 18px}
+.page-hero .ph-ic{flex:none;width:50px;height:50px;border-radius:17px;display:grid;place-items:center;font-size:20px;color:#fff;background:linear-gradient(135deg,#fb4f8a,#8b5cf6);box-shadow:0 12px 30px -10px rgba(251,79,138,.65)}
+.page-hero h1{font-size:1.55rem;font-weight:800;line-height:1.15;background:linear-gradient(90deg,#fff,#e9d5ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.page-hero p{font-size:.8rem;color:#94a3b8;margin-top:3px}
+#bottom-nav{position:fixed;left:10px;right:10px;bottom:calc(8px + env(safe-area-inset-bottom,0px));z-index:60;display:none;justify-content:space-around;padding:8px 6px;border-radius:22px;background:rgba(12,14,38,.88);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.1);box-shadow:0 14px 40px -12px rgba(0,0,0,.7)}
+#bottom-nav a{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 0;border-radius:16px;font-size:10px;font-weight:700;color:#94a3b8;text-decoration:none;transition:.2s}
+#bottom-nav a i{font-size:17px}
+#bottom-nav a.on{color:#fff;background:linear-gradient(135deg,rgba(251,79,138,.85),rgba(139,92,246,.85));box-shadow:0 8px 20px -8px rgba(251,79,138,.8)}
+@media (max-width:767px){#bottom-nav{display:flex}body{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}header nav[aria-label="Urambazaji wa Zuri"]{display:none}}
+#more-sheet{position:fixed;inset:0;z-index:70;display:none}
+#more-sheet.on{display:block}
+#more-sheet .ms-bg{position:absolute;inset:0;background:rgba(2,3,12,.65);backdrop-filter:blur(3px)}
+#more-sheet .ms-card{position:absolute;left:0;right:0;bottom:0;padding:10px 14px calc(18px + env(safe-area-inset-bottom,0px));border-radius:26px 26px 0 0;background:linear-gradient(180deg,#14183f,#0a0c24);border-top:1px solid rgba(255,255,255,.12);animation:popIn .25s ease-out}
+#more-sheet .ms-grab{width:42px;height:4px;border-radius:9px;background:rgba(255,255,255,.25);margin:4px auto 10px}
+#more-sheet a{display:flex;align-items:center;gap:14px;padding:14px 10px;border-radius:14px;color:#e2e8f0;font-weight:600;font-size:15px;text-decoration:none}
+#more-sheet a:hover{background:rgba(139,92,246,.18)}
+#more-sheet a i{width:22px;text-align:center;color:#fb7aa8}
+.zbtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 16px;border-radius:14px;font-weight:700;font-size:13px;color:#fff;background:linear-gradient(135deg,#fb4f8a,#8b5cf6);border:0;cursor:pointer;text-decoration:none}
+.zbtn.alt{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)}
+.zbtn.ok{background:linear-gradient(135deg,#10b981,#06b6d4)}
+.zbtn.danger{background:linear-gradient(135deg,#e11d48,#be123c)}
+.zfield{width:100%;padding:11px 14px;border-radius:14px;font-size:14px;color:#f8fafc;border:1px solid rgba(139,92,246,.3)}
+.zlabel{display:block;margin:12px 0 5px;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#94a3b8}
+.zchip{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:9999px;font-size:10px;font-weight:700;background:rgba(255,255,255,.08);color:#cbd5e1}
+.zchip.free{background:rgba(16,185,129,.18);color:#6ee7b7}
+.zchip.paid{background:rgba(251,191,36,.16);color:#fcd34d}
+.zrow{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:12px 14px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07)}
+.zmeter{height:9px;border-radius:9999px;background:rgba(255,255,255,.1);overflow:hidden}
+.zmeter>i{display:block;height:100%;border-radius:9999px;background:linear-gradient(90deg,#10b981,#06b6d4);transition:width .5s}
+.zprose h2{font-size:1.05rem;font-weight:800;color:#fff;margin:22px 0 6px}
+.zprose p,.zprose li{font-size:.9rem;line-height:1.7;color:#cbd5e1}
+.zprose ul{list-style:disc;padding-left:22px}
 </style>
 </head>
 <body class="min-h-screen flex flex-col selection:bg-rose-500/30 selection:text-rose-200">
@@ -175,6 +217,8 @@ main>section{animation:popIn .4s ease-out both}
         <a href="creator.html" class="step-btn px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-1.5 shrink-0"><span>YT • TikTok • IG</span><span id="nav-post-badge" class="px-1.5 rounded-full bg-fuchsia-500/25 text-fuchsia-200 text-[10px]">0</span></a>
         <a href="api-settings.html" class="step-btn px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-1.5 shrink-0"><span>Keys &amp; Sauti</span><span id="nav-keys-badge" class="px-1.5 rounded-full bg-rose-500/25 text-rose-200 text-[10px]">0</span></a>
         <a href="workspace.html" class="step-btn px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-1.5 shrink-0"><span>Mafaili &amp; Logo</span></a>
+        <a href="ai-hub.html" class="step-btn px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-1.5 shrink-0"><span>Ongeza AI</span></a>
+        <a href="account.html" class="step-btn px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-1.5 shrink-0"><span>Akaunti</span></a>
       </nav>
 
       <!-- Live Voice Call & TTS Controls -->
@@ -229,12 +273,15 @@ main>section{animation:popIn .4s ease-out both}
         <div class="neon-card rounded-2xl p-4"><p class="text-[11px] text-slate-400">Maudhui kwenye foleni</p><p id="dash-queue" class="text-2xl font-extrabold text-white">0</p></div>
         <div class="neon-card rounded-2xl p-4"><p class="text-[11px] text-slate-400">Kumbukumbu</p><p id="dash-mem" class="text-2xl font-extrabold text-white">0</p></div>
       </div>
+      <div class="neon-card rounded-3xl p-5"><div class="flex items-center justify-between gap-3 flex-wrap"><h3 class="font-bold text-white">🩺 Hali ya Live Call</h3><button onclick="lcTestVoice()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-rose-500 to-violet-600 text-white text-xs font-bold">🔊 Jaribu sauti ya Zuri</button></div><ul id="voice-diag" class="mt-3 space-y-1.5 text-sm text-slate-300"></ul><p id="voice-test-result" class="mt-2 text-xs text-emerald-300"></p></div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <a href="chat.html" class="neon-card rounded-3xl p-5 hover:border-rose-400/50 transition block"><i class="fa-solid fa-comments text-rose-400 text-xl"></i><h3 class="font-bold text-white mt-2">Story &amp; Simu</h3><p class="text-xs text-slate-400 mt-1">AI Chat, picha, microphone na Live Voice.</p></a>
         <a href="business.html" class="neon-card rounded-3xl p-5 hover:border-rose-400/50 transition block"><i class="fa-solid fa-chart-line text-emerald-400 text-xl"></i><h3 class="font-bold text-white mt-2">Tovuti &amp; Mauzo</h3><p class="text-xs text-slate-400 mt-1">Ushauri wa mauzo, ofa, funnel na mpango wa siku 7.</p></a>
         <a href="creator.html" class="neon-card rounded-3xl p-5 hover:border-rose-400/50 transition block"><i class="fa-solid fa-clapperboard text-fuchsia-400 text-xl"></i><h3 class="font-bold text-white mt-2">YouTube • TikTok • Instagram</h3><p class="text-xs text-slate-400 mt-1">Hooks, scripts, captions na foleni ya maudhui.</p></a>
         <a href="api-settings.html" class="neon-card rounded-3xl p-5 hover:border-rose-400/50 transition block"><i class="fa-solid fa-key text-amber-400 text-xl"></i><h3 class="font-bold text-white mt-2">Keys &amp; Sauti</h3><p class="text-xs text-slate-400 mt-1">API keys za AI 7, models na sauti ya Zuri.</p></a>
         <a href="workspace.html" class="neon-card rounded-3xl p-5 hover:border-rose-400/50 transition block"><i class="fa-solid fa-folder-open text-cyan-400 text-xl"></i><h3 class="font-bold text-white mt-2">Mafaili, Logo &amp; Backup</h3><p class="text-xs text-slate-400 mt-1">Kumbukumbu, Todo, logo na backup.</p></a>
+        <a href="ai-hub.html" class="neon-card rounded-3xl p-5 hover:border-rose-400/50 transition block"><i class="fa-solid fa-robot text-violet-400 text-xl"></i><h3 class="font-bold text-white mt-2">Ongeza AI</h3><p class="text-xs text-slate-400 mt-1">Tafuta AI kwa jina, ona model yake na upate key bure.</p></a>
+        <a href="account.html" class="neon-card rounded-3xl p-5 hover:border-rose-400/50 transition block"><i class="fa-solid fa-user-shield text-sky-400 text-xl"></i><h3 class="font-bold text-white mt-2">Akaunti &amp; Matumizi</h3><p class="text-xs text-slate-400 mt-1">Ingia, angalia kikomo chako cha leo na data yako.</p></a>
       </div>
     </section>
   </main>
@@ -471,7 +518,7 @@ const STORE = {
     }
 
 
-const PAGES = { chat: 'chat.html', business: 'business.html', creator: 'creator.html', keys: 'api-settings.html', workspace: 'workspace.html', home: 'index.html' };
+const PAGES = { chat: 'chat.html', business: 'business.html', creator: 'creator.html', keys: 'api-settings.html', workspace: 'workspace.html', hub: 'ai-hub.html', account: 'account.html', home: 'index.html' };
 function currentPage() { return (location.pathname.split('/').pop() || 'index.html'); }
 function switchStep(step) {
   const target = PAGES[step] || 'index.html';
@@ -1372,7 +1419,7 @@ function switchStep(step) {
                 <span>${esc(name)} • ${esc(m.provider || 'AI')}</span>
                 <div class="flex items-center gap-2.5">
                   <button onclick="speak(state.chat[${idx}].text)" title="Sikiliza" class="hover:text-white"><i class="fa-solid fa-volume-high"></i></button>
-                  <button onclick="sendToWorkspace(${idx})" title="Hifadhi kwenye Faili" class="hover:text-white"><i class="fa-solid fa-file-export"></i></button>
+                  <button onclick="sendToWorkspace(${idx})" title="Hifadhi kwenye Faili" class="hover:text-white"><i class="fa-solid fa-file-export"></i></button><button onclick="reportMsg(${idx})" title="Ripoti jibu hili" class="hover:text-white"><i class="fa-solid fa-flag"></i></button>
                 </div>
               </div>
               <div class="whitespace-pre-wrap leading-relaxed">${esc(m.text)}</div>
@@ -1580,7 +1627,476 @@ ${state.settings.personaNote ? '\nMaelekezo ya ziada: ' + state.settings.persona
       return out;
     }
 
+
+    /* ===== Live Call v2: hands-free, kusikiliza kila wakati, kukatiza, sauti sentensi kwa sentensi ===== */
+    const LC = { on: false, mode: '', stream: null, ctx: null, proc: null, src: null, srec: null, srMake: null, gen: 0, speaking: false, busy: false, muted: false, barge: true, stopCur: null, wake: null, ui: null, el: null, q: null, ctrl: null, turn: 0, warned: false, bad: {}, sens: 2, rate: 1, t0: 0, timer: null };
+    const __bsp = buildSystemPrompt;
+    buildSystemPrompt = function () {
+      return __bsp.apply(this, arguments) + (LC.on ? '\n\nUNAONGEA KWENYE SIMU YA SAUTI: Jibu kwa Kiswahili cha mazungumzo, sentensi 1 hadi 3 fupi, bila markdown, bila orodha, bila emoji, kama rafiki anayezungumza kwenye simu.' : '');
+    };
+    const lcName = () => (state.settings.name || 'Zuri');
+
+    function lcBuildUI() {
+      if (LC.ui) return LC.ui;
+      const st = document.createElement('style');
+      st.textContent = `
+#lc-overlay{position:fixed;inset:0;z-index:9999;display:none;flex-direction:column;align-items:center;justify-content:space-between;padding:calc(env(safe-area-inset-top,0px) + 28px) 20px calc(env(safe-area-inset-bottom,0px) + 28px);background:radial-gradient(70rem 40rem at 50% 20%,rgba(139,92,246,.35),transparent 60%),radial-gradient(50rem 30rem at 50% 100%,rgba(251,79,138,.28),transparent 60%),#05060f;color:#fff;font-family:Inter,sans-serif;text-align:center}
+#lc-overlay.on{display:flex}
+#lc-overlay .lc-top{font-size:13px;color:#a5b4fc;letter-spacing:.12em;font-weight:700}
+#lc-overlay .lc-mid{display:flex;flex-direction:column;align-items:center;gap:22px;width:100%;max-width:520px}
+#lc-overlay .lc-orb{--lv:0;width:190px;height:190px;border-radius:50%;cursor:pointer;transition:background .4s,box-shadow .4s;transform:scale(calc(1 + var(--lv)*.3));background:radial-gradient(circle at 35% 30%,#fff3,transparent 40%),linear-gradient(135deg,#10b981,#06b6d4);box-shadow:0 0 70px 10px rgba(16,185,129,.45)}
+#lc-overlay[data-s=thinking] .lc-orb{background:radial-gradient(circle at 35% 30%,#fff3,transparent 40%),linear-gradient(135deg,#8b5cf6,#6366f1);box-shadow:0 0 70px 10px rgba(139,92,246,.5);animation:lcp 1.1s ease-in-out infinite}
+#lc-overlay[data-s=speaking] .lc-orb{background:radial-gradient(circle at 35% 30%,#fff3,transparent 40%),linear-gradient(135deg,#fb4f8a,#f59e0b);box-shadow:0 0 80px 14px rgba(251,79,138,.55);animation:lcp 1.6s ease-in-out infinite}
+@keyframes lcp{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+#lc-overlay .lc-status{font-size:18px;font-weight:700}
+#lc-overlay .lc-you{font-size:14px;color:#c7d2fe;min-height:20px}
+#lc-overlay .lc-zuri{font-size:15px;color:#fbcfe8;max-height:22vh;overflow:auto;line-height:1.5}
+#lc-overlay .lc-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+#lc-overlay button{border:0;border-radius:9999px;padding:14px 20px;font-weight:700;font-size:14px;color:#fff;background:rgba(255,255,255,.12);cursor:pointer}
+#lc-overlay button.end{background:#e11d48}
+#lc-overlay .lc-type{display:flex;gap:8px;width:100%;max-width:520px;margin-bottom:12px}#lc-overlay .lc-type input{flex:1;border-radius:9999px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.07);color:#fff;padding:12px 16px;font-size:14px;outline:none}#lc-overlay button.off{background:rgba(225,29,72,.35)}`;
+      document.head.appendChild(st);
+      const d = document.createElement('div');
+      d.id = 'lc-overlay';
+      d.innerHTML = `<div class="lc-top">LIFEISGAMETZ • SIMU YA ZURI</div>
+<div class="lc-mid"><div class="lc-orb" title="Gusa kumkatiza"></div><div class="lc-status"></div><div class="lc-you"></div><div class="lc-zuri"></div></div>
+<div class="lc-type"><input type="text" placeholder="Au andika hapa (mahali penye kelele)…" /><button data-a="send">➤</button></div>
+<div class="lc-btns"><button data-a="mute">🎙️ Mic: ON</button><button data-a="barge">✋ Katiza: ON</button><button data-a="sens">🎚️ Unyeti: Wastani</button><button data-a="rate">⏩ Kasi: 1x</button><button class="end" data-a="end">Kata Simu</button></div>`;
+      document.body.appendChild(d);
+      const q = s => d.querySelector(s);
+      LC.ui = { root: d, orb: q('.lc-orb'), status: q('.lc-status'), you: q('.lc-you'), zuri: q('.lc-zuri'), top: q('.lc-top') };
+      q('.lc-orb').onclick = lcInterrupt;
+      q('[data-a=end]').onclick = stopLiveCallMode;
+      q('[data-a=mute]').onclick = e => { LC.muted = !LC.muted; e.target.textContent = LC.muted ? '🔇 Mic: OFF' : '🎙️ Mic: ON'; e.target.classList.toggle('off', LC.muted); };
+      q('[data-a=barge]').onclick = () => { LC.barge = !LC.barge; state.settings.lcBarge = LC.barge; saveSettings(); lcSyncBtns(); };
+      q('[data-a=sens]').onclick = () => { LC.sens = LC.sens === 1 ? 2 : LC.sens === 2 ? 3 : 1; state.settings.lcSens = LC.sens; saveSettings(); lcSyncBtns(); };
+      q('[data-a=rate]').onclick = () => { LC.rate = LC.rate === 1 ? 1.15 : LC.rate === 1.15 ? 1.3 : 1; state.settings.lcRate = LC.rate; saveSettings(); lcSyncBtns(); if (LC.el) LC.el.playbackRate = LC.rate; };
+      const inp = q('.lc-type input'), send = () => { const t = inp.value.trim(); if (!t || !LC.on) return; inp.value = ''; lcInterrupt(); lcTurn(t); };
+      q('[data-a=send]').onclick = send; inp.addEventListener('keydown', e => { if (e.key === 'Enter') send(); });
+      return LC.ui;
+    }
+    function lcSyncBtns() {
+      if (!LC.ui) return; const q = s => LC.ui.root.querySelector(s);
+      q('[data-a=barge]').textContent = LC.barge ? '✋ Katiza: ON' : '✋ Katiza: OFF'; q('[data-a=barge]').classList.toggle('off', !LC.barge);
+      q('[data-a=sens]').textContent = '🎚️ Unyeti: ' + ({ 1: 'Chini', 2: 'Wastani', 3: 'Juu' })[LC.sens];
+      q('[data-a=rate]').textContent = '⏩ Kasi: ' + LC.rate + 'x';
+    }
+    function lcSet(s, t) { if (!LC.ui) return; LC.ui.root.dataset.s = s; LC.ui.status.textContent = t; }
+    const lcListenMsg = () => lcSet('listening', `${lcName()} anakusikiliza… ongea tu`);
+
+    function lcWav(chunks, inRate) {
+      let len = 0; chunks.forEach(c => len += c.length);
+      const all = new Float32Array(len); let o = 0; chunks.forEach(c => { all.set(c, o); o += c.length; });
+      const r = Math.max(1, Math.round(inRate / 16000)), rate = Math.round(inRate / r), n = Math.floor(len / r);
+      const buf = new ArrayBuffer(44 + n * 2), v = new DataView(buf);
+      const w = (p, s) => { for (let i = 0; i < s.length; i++) v.setUint8(p + i, s.charCodeAt(i)); };
+      w(0, 'RIFF'); v.setUint32(4, 36 + n * 2, true); w(8, 'WAVEfmt '); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true);
+      v.setUint32(24, rate, true); v.setUint32(28, rate * 2, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true); w(36, 'data'); v.setUint32(40, n * 2, true);
+      for (let i = 0; i < n; i++) { let s = 0; for (let j = 0; j < r; j++) s += all[i * r + j]; s = Math.max(-1, Math.min(1, s / r)); v.setInt16(44 + i * 2, s < 0 ? s * 0x8000 : s * 0x7fff, true); }
+      return new Blob([buf], { type: 'audio/wav' });
+    }
+
+    const LC_GHOST = /^(asante( sana)?( kwa (kutazama|kusikiliza|kuangalia|kuwa nasi))?|thank you( for watching)?|thanks for watching|subtitles? by.*|you|bye|\W*)$/i;
+    async function lcSTT(blob) {
+      const k = state.keys || {}; let tried = 0;
+      const form = (url, key, model) => { const fd = new FormData(); fd.append('file', blob, 'a.wav'); fd.append('model', model); fd.append('language', 'sw'); return fetch(url, { method: 'POST', headers: { Authorization: 'Bearer ' + key }, body: fd }).then(r => r.ok ? r.json() : Promise.reject(r.status)).then(j => (j.text || '').trim()); };
+      if ((k.groq || '').trim()) { tried++; try { return await form('https://api.groq.com/openai/v1/audio/transcriptions', k.groq.trim(), 'whisper-large-v3-turbo'); } catch (_) {} }
+      if ((k.openai || '').trim()) { tried++; try { return await form('https://api.openai.com/v1/audio/transcriptions', k.openai.trim(), 'whisper-1'); } catch (_) {} }
+      if ((k.gemini || '').trim()) {
+        tried++;
+        try {
+          const b64 = await new Promise(res => { const fr = new FileReader(); fr.onload = () => res(fr.result.split(',')[1]); fr.readAsDataURL(blob); });
+          const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(k.gemini.trim())}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ contents: [{ parts: [{ inline_data: { mime_type: 'audio/wav', data: b64 } }, { text: 'Andika kwa Kiswahili maneno yaliyosemwa kwenye sauti hii. Rudisha maandishi tu, bila maelezo. Kama hakuna maneno wazi, usirudishe chochote.' }] }] }) });
+          if (r.ok) { const j = await r.json(); return (j.candidates?.[0]?.content?.parts?.[0]?.text || '').trim(); }
+        } catch (_) {}
+      }
+      if (!tried && zauth.enabled() && zauth.s) { tried++; try { const r = await zauth.api('/api/stt', { method: 'POST', headers: { 'Content-Type': 'audio/wav' }, body: blob }); if (r.ok) return ((await r.json()).text || '').trim(); } catch (_) {} }
+      return tried ? null : '';
+    }
+
+    const lcOk = n => !(LC.bad[n] > Date.now());
+    const lcFail = (n, st) => { LC.bad[n] = Date.now() + (st === 429 ? 300000 : 60000); };
+    async function lcTTS(text) {
+      const s = state.settings, k = state.keys || {};
+      const go = async (n, req) => { try { const r = await req(); if (r.ok) return r; lcFail(n, r.status); } catch (_) { lcFail(n, 0); } return null; };
+      if (s.elevenKey && s.elevenVoiceId && lcOk('eleven')) {
+        const r = await go('eleven', () => fetch(`https://api.elevenlabs.io/v1/text-to-speech/${encodeURIComponent(s.elevenVoiceId)}`, { method: 'POST', headers: { 'Content-Type': 'application/json', 'xi-api-key': s.elevenKey }, body: JSON.stringify({ text, model_id: 'eleven_multilingual_v2', voice_settings: { stability: 0.45, similarity_boost: 0.82 } }) }));
+        if (r) return { url: URL.createObjectURL(await r.blob()), engine: 'ElevenLabs' };
+      }
+      if ((k.openai || '').trim() && lcOk('openai')) {
+        const r = await go('openai', () => fetch('https://api.openai.com/v1/audio/speech', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + k.openai.trim() }, body: JSON.stringify({ model: 'tts-1', voice: 'nova', input: text }) }));
+        if (r) return { url: URL.createObjectURL(await r.blob()), engine: 'OpenAI' };
+      }
+      if ((k.gemini || '').trim() && lcOk('gemini')) {
+        const r = await go('gemini', () => fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${encodeURIComponent(k.gemini.trim())}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ contents: [{ parts: [{ text }] }], generationConfig: { responseModalities: ['AUDIO'], speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: 'Aoede' } } } } }) }));
+        if (r) {
+          try {
+            const j = await r.json(); const b64 = j.candidates?.[0]?.content?.parts?.[0]?.inlineData?.data;
+            if (b64) { const bin = atob(b64), n = bin.length, pcm = new Uint8Array(n); for (let i = 0; i < n; i++) pcm[i] = bin.charCodeAt(i); return { url: URL.createObjectURL(lcPcmWav(pcm, 24000)), engine: 'Gemini' }; }
+          } catch (_) {}
+          lcFail('gemini', 0);
+        }
+      }
+      return { text, engine: 'Sauti ya browser' };
+    }
+    function lcPcmWav(pcm, rate) {
+      const buf = new ArrayBuffer(44 + pcm.length), v = new DataView(buf);
+      const w = (p, t) => { for (let i = 0; i < t.length; i++) v.setUint8(p + i, t.charCodeAt(i)); };
+      w(0, 'RIFF'); v.setUint32(4, 36 + pcm.length, true); w(8, 'WAVEfmt '); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true);
+      v.setUint32(24, rate, true); v.setUint32(28, rate * 2, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true); w(36, 'data'); v.setUint32(40, pcm.length, true);
+      new Uint8Array(buf, 44).set(pcm); return new Blob([buf], { type: 'audio/wav' });
+    }
+    function lcPlay(item, gen) {
+      return new Promise(res => {
+        if (gen !== LC.gen) return res();
+        if (item.url) {
+          const a = LC.el || (LC.el = new Audio()); let fin = false;
+          const done = () => { if (fin) return; fin = true; a.onended = a.onerror = null; try { URL.revokeObjectURL(item.url); } catch (_) {} res(); };
+          a.onended = done; a.onerror = done; LC.stopCur = () => { try { a.pause(); } catch (_) {} done(); };
+          a.src = item.url; a.playbackRate = LC.rate || 1; a.play().catch(() => { lcWarn('Sauti imezuiwa na browser. Gusa duara kisha ujaribu tena.'); done(); });
+        } else if (window.speechSynthesis) {
+          const u = new SpeechSynthesisUtterance(item.text);
+          const voices = speechSynthesis.getVoices() || [];
+          const ch = (state.settings.voiceIdx !== '' && voices[Number(state.settings.voiceIdx)]) ? voices[Number(state.settings.voiceIdx)] : (voices.find(v => /^sw/i.test(v.lang)) || pickBestArabicFemaleVoice(voices));
+          if (ch) u.voice = ch;
+          u.lang = ch ? ch.lang : 'sw-TZ';
+          u.pitch = Number(state.settings.pitch ?? 1.1); u.rate = Number(state.settings.rate ?? 1) * (LC.rate || 1);
+          let started = false, fin = false;
+          const done = () => { if (fin) return; fin = true; clearTimeout(wd); res(); };
+          const wd = setTimeout(() => { if (!started) { try { speechSynthesis.cancel(); } catch (_) {} lcWarn('Browser hii haina sauti ya kuongea. Weka key ya OpenAI, Gemini au ElevenLabs kwenye "Keys & Sauti" ili Zuri aongee.'); done(); } }, 3000);
+          u.onstart = () => { started = true; };
+          u.onend = u.onerror = done;
+          LC.stopCur = () => { try { speechSynthesis.cancel(); } catch (_) {} done(); };
+          speechSynthesis.cancel(); speechSynthesis.speak(u);
+        } else res();
+      });
+    }
+    function lcWarn(t) { if (LC.ui) LC.ui.you.textContent = '⚠️ ' + t; if (!LC.warned) { LC.warned = true; toast(t, 'error'); } }
+    function lcInterrupt() { try { LC.ctrl && LC.ctrl.abort(); } catch (_) {} LC.gen++; LC.speaking = false; try { LC.stopCur && LC.stopCur(); } catch (_) {} try { window.speechSynthesis && speechSynthesis.cancel(); } catch (_) {} }
+
+    const lcClean = t => (t || '').replace(/\[([^\]]*)\]\([^)]*\)/g, '$1').replace(/[*_`#>~]/g, '').replace(/\s+/g, ' ').trim();
+    function lcSpeechStart() {
+      const gen = ++LC.gen, q = { gen, items: [], done: false, wake: null }; LC.q = q; LC.speaking = true;
+      lcSet('speaking', `${lcName()} anaongea… (gusa duara kumkatiza)`);
+      q.loop = (async () => {
+        let i = 0;
+        while (gen === LC.gen && LC.on) {
+          if (i >= q.items.length) { if (q.done) break; await new Promise(r => q.wake = r); continue; }
+          const it = await q.items[i++];
+          if (gen !== LC.gen) break;
+          await lcPlay(it, gen);
+        }
+        if (gen === LC.gen) { LC.speaking = false; if (LC.on && !LC.busy) lcListenMsg(); }
+      })();
+      return q;
+    }
+    function lcSpeechPush(q, s) { const c = lcClean(s); if (!c) return; q.items.push(lcTTS(c)); if (q.wake) q.wake(); }
+    function lcSpeechEnd(q) { q.done = true; if (q.wake) q.wake(); return q.loop; }
+    async function lcSpeak(text) { const q = lcSpeechStart(); lcSpeechPush(q, text); await lcSpeechEnd(q); }
+
+    async function lcStreamAI(history, onText, signal) {
+      const urls = { cerebras: 'https://api.cerebras.ai/v1/chat/completions', groq: 'https://api.groq.com/openai/v1/chat/completions', openrouter: 'https://openrouter.ai/api/v1/chat/completions', deepseek: 'https://api.deepseek.com/chat/completions', openai: 'https://api.openai.com/v1/chat/completions' };
+      const keys = state.keys || {}, pref = state.settings.activeProvider;
+      let order = ['cerebras', 'groq', 'openai', 'deepseek', 'openrouter'].filter(p => (keys[p] || '').trim());
+      if (pref && pref !== 'auto' && order.includes(pref)) order = [pref, ...order.filter(x => x !== pref)];
+      let entries = order.map(p => ({ id: p.toUpperCase(), url: urls[p], key: keys[p].trim(), model: (state.models[p] || '').trim() }));
+      zCustomList().filter(c => c.baseUrl && c.model).forEach(c => { const e = { id: c.name.toUpperCase(), url: c.baseUrl.replace(/\/$/, '') + '/chat/completions', key: c.key || '', model: c.model }; if (pref === 'custom:' + c.id) entries.unshift(e); else entries.push(e); });
+      if (!entries.length && zauth.enabled() && zauth.s) { const t = await zauth.token(); if (t) entries.push({ id: 'ZURI', url: ZCFG.API_BASE.replace(/\/$/, '') + '/api/chat', key: t, model: '', gw: true }); }
+      if (!entries.length) throw new Error('nostream');
+      const msgs = zMsgs(history);
+      for (const p of entries) {
+        if (signal.aborted) throw new Error('aborted');
+        try {
+          const body = { messages: msgs, temperature: 0.7, max_tokens: 240, stream: true }; if (p.model) body.model = p.model;
+          const r = await fetch(p.url, { method: 'POST', signal, headers: { 'Content-Type': 'application/json', ...(p.key ? { Authorization: 'Bearer ' + p.key } : {}) }, body: JSON.stringify(body) });
+          if (r.status === 429 && p.gw) throw zLimitError();
+          if (!r.ok || !r.body) throw new Error('http ' + r.status);
+          const rd = r.body.getReader(), dec = new TextDecoder(); let buf = '', full = '';
+          for (;;) {
+            const { done, value } = await rd.read(); if (done) break;
+            buf += dec.decode(value, { stream: true }); const lines = buf.split('\n'); buf = lines.pop();
+            for (const ln of lines) { const t = ln.trim(); if (!t.startsWith('data:')) continue; const d = t.slice(5).trim(); if (d === '[DONE]') continue; try { const c = JSON.parse(d).choices?.[0]?.delta?.content; if (c) { full += c; onText(c); } } catch (_) {} }
+          }
+          if (full.trim()) return { text: full.trim(), provider: p.id };
+        } catch (e) { if (signal.aborted) throw new Error('aborted'); if (e.limit) throw e; }
+      }
+      throw new Error('nostream');
+    }
+
+    async function lcTurn(text) {
+      const my = ++LC.turn; LC.busy = true; lcSet('thinking', `${lcName()} anafikiria…`);
+      LC.ui.you.textContent = 'Wewe: ' + text; LC.ui.zuri.textContent = '';
+      state.chat.push({ id: 'u_voice_' + Date.now(), role: 'user', text: '🎙️ ' + text }); writeStore(STORE.chat, state.chat);
+      const ctrl = LC.ctrl = new AbortController();
+      let q = null, pend = '', full = '', provider = 'AI';
+      const push = s => { if (!q) q = lcSpeechStart(); lcSpeechPush(q, s); };
+      const flush = fin => { let m; const re = fin ? /^([\s\S]{14,}?[.!?؟\n]+)(\s+|$)/ : /^([\s\S]{14,}?[.!?؟\n]+)(\s+)/; while ((m = pend.match(re))) { pend = pend.slice(m[0].length); push(m[1]); } if (fin && pend.trim()) { push(pend); pend = ''; } };
+      try {
+        try {
+          const r = await lcStreamAI(state.chat.slice(-12), c => { full += c; pend += c; LC.ui.zuri.textContent = full; if (my === LC.turn) flush(false); }, ctrl.signal);
+          provider = r.provider; full = r.text; if (my === LC.turn && LC.on) flush(true);
+        } catch (e) {
+          if (ctrl.signal.aborted) throw e;
+          const lim = x => { full = x.spoken; LC.ui.zuri.textContent = x.message; if (LC.on && my === LC.turn) push(full); };
+          if (e.limit) lim(e);
+          else if (full) { if (my === LC.turn && LC.on) flush(true); }
+          else { try { const r = await runAIWithFallback(state.chat.slice(-12), true); provider = r.provider; full = r.text; LC.ui.zuri.textContent = full; if (LC.on) push(full); } catch (e2) { if (e2.limit) lim(e2); else throw e2; } }
+        }
+      } catch (e) { if (!ctrl.signal.aborted) toast(e.message, 'error'); }
+      if (full.trim()) { state.chat.push({ id: 'a_voice_' + Date.now(), role: 'assistant', provider: provider + ' • Voice', text: full.trim() }); writeStore(STORE.chat, state.chat); try { renderChat(null); } catch (_) {} }
+      if (my === LC.turn) {
+        LC.busy = false;
+        if (q) { await lcSpeechEnd(q); }
+        else if (LC.on) lcListenMsg();
+        if (LC.on && LC.srMake) setTimeout(LC.srMake, 300);
+      }
+    }
+
+    async function lcFinish(chunks) {
+      LC.busy = true; lcSet('thinking', 'Nasikiliza ulichosema…');
+      let t = ''; try { t = await lcSTT(lcWav(chunks, LC.ctx ? LC.ctx.sampleRate : 48000)); } catch (_) { t = null; }
+      if (!LC.on) return;
+      if (t === null) { LC.busy = false; lcWarn('Imeshindwa kukusikia. Angalia key ya Groq/OpenAI/Gemini au mtandao.'); if (!LC.speaking) lcListenMsg(); return; }
+      if (!t || t.length < 2 || LC_GHOST.test(t.trim())) { LC.busy = false; if (!LC.speaking) lcListenMsg(); return; }
+      await lcTurn(t);
+    }
+
+    async function lcStartCloud() {
+      LC.stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true } });
+      const AC = window.AudioContext || window.webkitAudioContext;
+      LC.ctx = new AC(); await LC.ctx.resume();
+      LC.src = LC.ctx.createMediaStreamSource(LC.stream);
+      LC.proc = LC.ctx.createScriptProcessor(4096, 1, 1);
+      const sink = LC.ctx.createGain(); sink.gain.value = 0;
+      LC.src.connect(LC.proc); LC.proc.connect(sink); sink.connect(LC.ctx.destination);
+      let buf = [], pre = [], inSp = false, voiced = 0, lastV = 0, startT = 0;
+      LC.proc.onaudioprocess = e => {
+        if (!LC.on) return;
+        const x = e.inputBuffer.getChannelData(0); let sum = 0;
+        for (let i = 0; i < x.length; i++) sum += x[i] * x[i];
+        const rms = Math.sqrt(sum / x.length), ms = x.length / LC.ctx.sampleRate * 1000, now = Date.now();
+        LC.ui.orb.style.setProperty('--lv', Math.min(1, rms * 10).toFixed(2));
+        if (LC.muted || (LC.busy && !LC.speaking) || (LC.speaking && !LC.barge)) { buf = []; pre = []; inSp = false; voiced = 0; return; }
+        const base = ({ 1: 0.04, 2: 0.022, 3: 0.013 })[LC.sens] || 0.022, thr = LC.speaking ? base * 3.2 : base, c = new Float32Array(x);
+        if (rms > thr) { voiced += ms; lastV = now; } else if (now - lastV > 250) voiced = 0;
+        if (!inSp) {
+          pre.push(c); if (pre.length > 4) pre.shift();
+          if (voiced >= (LC.speaking ? 380 : 200)) { inSp = true; startT = now; buf = pre.slice(); pre = []; if (LC.speaking) lcInterrupt(); lcSet('listening', 'Nakusikia…'); }
+        } else {
+          buf.push(c);
+          if (now - lastV > 800 || now - startT > 25000) { const ch = buf; buf = []; inSp = false; voiced = 0; lcFinish(ch); }
+        }
+      };
+    }
+
+    function lcStartSR() {
+      const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+      let timer = null, fin = '';
+      LC.srMake = () => {
+        if (!LC.on || LC.busy || LC.speaking || LC.muted) return;
+        try { LC.srec && LC.srec.stop(); } catch (_) {}
+        const r = new SR(); r.lang = 'sw-TZ'; r.continuous = true; r.interimResults = true; LC.srec = r;
+        r.onresult = e => {
+          let interim = '';
+          for (let i = e.resultIndex; i < e.results.length; i++) { const t = e.results[i][0].transcript; if (e.results[i].isFinal) fin += ' ' + t; else interim += t; }
+          LC.ui.you.textContent = 'Wewe: ' + (fin + ' ' + interim).trim();
+          clearTimeout(timer);
+          timer = setTimeout(async () => { const t = (fin + ' ' + interim).trim(); fin = ''; if (t.length > 1 && !LC.busy) { try { r.stop(); } catch (_) {} await lcTurn(t); } }, 1300);
+        };
+        r.onend = () => { if (LC.on && !LC.busy && !LC.speaking) setTimeout(LC.srMake, 300); };
+        try { r.start(); } catch (_) {}
+      };
+      LC.srMake();
+    }
+
+    async function startLiveCallMode() {
+      if (LC.on) return;
+      const k = state.keys || {}, has = p => (k[p] || '').trim().length > 0;
+      const gw = zauth.enabled() && !!zauth.s, cloud = ['groq', 'openai', 'gemini'].some(has) || gw;
+      const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!PROVIDERS.some(has) && !zCustomList().length && !gw) { toast(zauth.enabled() ? 'Ingia kwenye Akaunti ili utumie AI ya bure ya Zuri.' : 'Ongeza AI kwanza (Ongeza AI au Keys & Sauti).', 'error'); switchStep(zauth.enabled() ? 'account' : 'hub'); return; }
+      if (!cloud && !SR) { toast('Browser hii haisikii sauti. Weka key ya Groq, OpenAI au Gemini, au tumia Chrome.', 'error'); return; }
+      try { LC.el = LC.el || new Audio(); LC.el.src = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA='; LC.el.play().catch(() => {}); } catch (_) {}
+      try { window.speechSynthesis && speechSynthesis.speak(new SpeechSynthesisUtterance('')); } catch (_) {}
+      LC.warned = false; LC.sens = Number(state.settings.lcSens || 2); LC.rate = Number(state.settings.lcRate || 1); LC.barge = state.settings.lcBarge !== false;
+      lcBuildUI(); lcSyncBtns();
+      LC.on = true; LC.busy = false; LC.muted = false; LC.speaking = false; LC.ui.you.textContent = ''; LC.ui.zuri.textContent = '';
+      state.settings.tts = true; saveSettings(); refreshTTSUI();
+      LC.ui.root.classList.add('on'); lcSet('thinking', 'Naunganisha microphone…');
+      try {
+        if (cloud) { LC.mode = 'cloud'; await lcStartCloud(); } else LC.mode = 'sr';
+      } catch (e) { LC.on = false; LC.ui.root.classList.remove('on'); toast('Ruhusu microphone kwenye browser kisha jaribu tena.', 'error'); return; }
+      try { LC.wake = await navigator.wakeLock.request('screen'); } catch (_) {}
+      document.getElementById('live-call-label').textContent = 'Simu Inaendelea';
+      LC.t0 = Date.now(); clearInterval(LC.timer);
+      LC.timer = setInterval(() => { const sec = Math.floor((Date.now() - LC.t0) / 1000); LC.ui.top.textContent = 'LIFEISGAMETZ • SIMU YA ZURI • ' + String(Math.floor(sec / 60)).padStart(2, '0') + ':' + String(sec % 60).padStart(2, '0'); }, 1000);
+      await lcSpeak('Haya, nakusikiliza.');
+      if (LC.on && LC.mode === 'sr') lcStartSR();
+    }
+
+    function stopLiveCallMode() {
+      LC.on = false; lcInterrupt(); LC.srMake = null;
+      try { LC.srec && LC.srec.stop(); } catch (_) {}
+      try { if (LC.proc) { LC.proc.onaudioprocess = null; LC.proc.disconnect(); } } catch (_) {}
+      try { LC.src && LC.src.disconnect(); } catch (_) {}
+      try { LC.ctx && LC.ctx.close(); } catch (_) {}
+      try { LC.stream && LC.stream.getTracks().forEach(t => t.stop()); } catch (_) {}
+      try { LC.wake && LC.wake.release(); } catch (_) {}
+      clearInterval(LC.timer); LC.proc = LC.ctx = LC.src = LC.stream = LC.wake = null;
+      if (LC.ui) LC.ui.root.classList.remove('on');
+      document.getElementById('live-call-label').textContent = 'Piga Simu / Live Voice';
+      toast('Simu imekatwa.');
+    }
+    document.addEventListener('visibilitychange', async () => {
+      if (document.visibilityState !== 'visible' || !LC.on) return;
+      try { if (LC.ctx && LC.ctx.state === 'suspended') await LC.ctx.resume(); } catch (_) {}
+      try { LC.wake = await navigator.wakeLock.request('screen'); } catch (_) {}
+    });
+    window.addEventListener('offline', () => toast('Hakuna mtandao. Zuri hawezi kujibu mpaka mtandao urudi.', 'error'));
+    function lcDiag() {
+      const ul = document.querySelector('#voice-diag'); if (!ul) return;
+      const k = state.keys || {}, s = state.settings, has = p => (k[p] || '').trim().length > 0;
+      const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const voices = (window.speechSynthesis && speechSynthesis.getVoices()) || [];
+      const sw = voices.some(v => /^sw/i.test(v.lang));
+      const row = (ok, t) => `<li>${ok === true ? '✅' : ok === false ? '❌' : '⚠️'} ${t}</li>`;
+      const rows = [];
+      rows.push(has('groq') ? row(true, 'Kusikia: Groq Whisper (bora kwa Kiswahili)') : (has('openai') || has('gemini')) ? row(true, 'Kusikia: ' + (has('openai') ? 'OpenAI' : 'Gemini')) : SR ? row('w', 'Kusikia: browser tu (Chrome). Weka key ya Groq kwa ubora zaidi') : row(false, 'Kusikia: hakuna. Weka key ya Groq, OpenAI au Gemini'));
+      rows.push(['cerebras', 'groq', 'openai', 'deepseek', 'openrouter'].some(has) ? row(true, 'Majibu ya moja kwa moja (streaming)') : row('w', 'Majibu yatasubiri jibu lote. Weka key ya Groq au Cerebras kwa kasi'));
+      rows.push((s.elevenKey && s.elevenVoiceId) ? row(true, 'Sauti ya Zuri: ElevenLabs') : has('openai') ? row(true, 'Sauti ya Zuri: OpenAI') : has('gemini') ? row(true, 'Sauti ya Zuri: Gemini (kikomo cha bure kinaweza kukata)') : sw ? row('w', 'Sauti ya Zuri: ya browser (Kiswahili ipo)') : row(false, 'Sauti ya Zuri: browser haina Kiswahili. Weka key ya OpenAI, Gemini au ElevenLabs'));
+      rows.push(location.protocol === 'https:' || ['localhost', '127.0.0.1', ''].includes(location.hostname) ? row(true, 'Muunganiko salama (HTTPS)') : row(false, 'Microphone inahitaji HTTPS'));
+      rows.push(navigator.mediaDevices && navigator.mediaDevices.getUserMedia ? row(true, 'Microphone inapatikana kwenye browser') : row(false, 'Browser hii haiungi mkono microphone'));
+      if (zauth.enabled()) rows.push(zauth.s ? row(true, 'Akaunti ya Zuri: umeingia (AI ya bure ya Zuri inapatikana, ina kikomo kwa siku)') : row('w', 'Hujaingia kwenye akaunti. Ingia ili upate AI ya bure ya Zuri'));
+      const nc = zCustomList().length; if (nc) rows.push(row(true, 'AI maalum ulizoongeza: ' + nc));
+      ul.innerHTML = rows.join('');
+    }
+    async function lcTestVoice() {
+      const out = document.querySelector('#voice-test-result'); const say = t => { if (out) out.textContent = t; };
+      try {
+        LC.el = LC.el || new Audio();
+        try { LC.el.src = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA='; LC.el.play().catch(() => {}); } catch (_) {}
+        say('Naandaa sauti…');
+        const it = await lcTTS('Habari, mimi ni Zuri. Sauti yangu inafanya kazi vizuri.');
+        say('Injini ya sauti: ' + it.engine + ' — sikiliza sasa…');
+        LC.warned = false; const g = ++LC.gen; await lcPlay(it, g);
+        say('Injini: ' + it.engine + '. Kama hukusikia kitu, ongeza sauti ya simu au weka key ya OpenAI/Gemini/ElevenLabs.');
+      } catch (e) { say('Imeshindwa: ' + e.message); }
+      lcDiag();
+    }
+    window.addEventListener('DOMContentLoaded', () => { setTimeout(lcDiag, 500); if (window.speechSynthesis) speechSynthesis.onvoiceschanged = lcDiag; });
+    function toggleLiveCallMode() { if (LC.on) stopLiveCallMode(); else startLiveCallMode(); }
+
+    /* ===== Zuri X: akaunti, AI ya seva (gateway), AI maalum, menyu ya chini, PWA ===== */
+    const ZCFG = window.ZURI_CONFIG || {};
+    const ZAUTH_KEY = 'zuri_auth_v1', ZCUSTOM_KEY = 'zuri_custom_ais_v1';
+    const zauth = {
+      get s() { try { return JSON.parse(localStorage.getItem(ZAUTH_KEY) || 'null'); } catch (_) { return null; } },
+      put(s) { try { s ? localStorage.setItem(ZAUTH_KEY, JSON.stringify(s)) : localStorage.removeItem(ZAUTH_KEY); } catch (_) {} },
+      enabled() { return !!(ZCFG.API_BASE && ZCFG.SUPABASE_URL && ZCFG.SUPABASE_ANON_KEY); },
+      async call(path, body) {
+        const r = await fetch(ZCFG.SUPABASE_URL.replace(/\/$/, '') + path, { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: ZCFG.SUPABASE_ANON_KEY }, body: JSON.stringify(body) });
+        const j = await r.json().catch(() => ({}));
+        if (!r.ok) throw new Error(j.msg || j.error_description || j.error || ('HTTP ' + r.status));
+        return j;
+      },
+      save(j) { if (j && j.access_token) this.put({ access: j.access_token, refresh: j.refresh_token, exp: Date.now() + ((j.expires_in || 3600) - 60) * 1000, email: (j.user && j.user.email) || (this.s && this.s.email) || '' }); return j; },
+      async signUp(email, password) { return this.save(await this.call('/auth/v1/signup', { email, password })); },
+      async signIn(email, password) { return this.save(await this.call('/auth/v1/token?grant_type=password', { email, password })); },
+      async token() {
+        const s = this.s; if (!s) return null; if (Date.now() < s.exp) return s.access;
+        try { this.save(await this.call('/auth/v1/token?grant_type=refresh_token', { refresh_token: s.refresh })); return this.s.access; } catch (_) { this.put(null); return null; }
+      },
+      signOut() { this.put(null); },
+      async api(path, opt = {}) {
+        const t = await this.token(); if (!t) throw new Error('Ingia kwenye akaunti kwanza.');
+        return fetch(ZCFG.API_BASE.replace(/\/$/, '') + path, { ...opt, headers: { ...(opt.headers || {}), Authorization: 'Bearer ' + t } });
+      }
+    };
+    function zCustomList() { try { return JSON.parse(localStorage.getItem(ZCUSTOM_KEY) || '[]'); } catch (_) { return []; } }
+    function zCustomSave(l) { try { localStorage.setItem(ZCUSTOM_KEY, JSON.stringify(l)); } catch (_) {} }
+    function zLimitError() {
+      const e = new Error('Umefikia kikomo cha ujumbe wa bure wa leo. Ili kuendelea bila kikomo, pata key yako ya bure: fungua "Ongeza AI" kisha "Pata key bure". Kikomo kinarudi kesho.');
+      e.limit = true; e.spoken = 'Kikomo cha leo kimeisha. Fungua Ongeza AI, upate key yako ya bure, kisha tuendelee bila kikomo.'; return e;
+    }
+    const zMsgs = messages => [{ role: 'system', content: buildSystemPrompt() }, ...messages.slice(-24).map(m => ({ role: m.role === 'user' ? 'user' : 'assistant', content: (m.text || ' ').replace(/^🎙️\s*/, '') }))];
+    async function zRunCustom(id, messages, withMeta) {
+      const c = zCustomList().find(x => x.id === id); if (!c) throw new Error('AI hiyo haipo');
+      const r = await fetch(c.baseUrl.replace(/\/$/, '') + '/chat/completions', { method: 'POST', headers: { 'Content-Type': 'application/json', ...(c.key ? { Authorization: 'Bearer ' + c.key } : {}) }, body: JSON.stringify({ model: c.model, messages: zMsgs(messages), temperature: 0.7, max_tokens: (typeof LC !== 'undefined' && LC.on) ? 240 : 900 }) });
+      const j = await r.json().catch(() => ({})); if (!r.ok) throw new Error((j.error && j.error.message) || ('HTTP ' + r.status));
+      const t = ((j.choices && j.choices[0] && j.choices[0].message && j.choices[0].message.content) || '').trim(); if (!t) throw new Error('Jibu tupu');
+      return withMeta ? { text: t, provider: c.name.toUpperCase() } : t;
+    }
+    async function zGateway(messages, withMeta) {
+      const r = await zauth.api('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: zMsgs(messages), max_tokens: (typeof LC !== 'undefined' && LC.on) ? 240 : 700 }) });
+      const j = await r.json().catch(() => ({}));
+      if (r.status === 429) throw zLimitError();
+      if (!r.ok) throw new Error(j.error || ('HTTP ' + r.status));
+      const t = ((j.choices && j.choices[0] && j.choices[0].message && j.choices[0].message.content) || '').trim(); if (!t) throw new Error('Jibu tupu');
+      return withMeta ? { text: t, provider: 'ZURI' } : t;
+    }
+    const __raf = runAIWithFallback;
+    runAIWithFallback = async function (messages, withMeta = false) {
+      const hasOwn = PROVIDERS.some(p => ((state.keys[p] || '').trim()).length > 0), customs = zCustomList(), pref = state.settings.activeProvider || 'auto';
+      let err = null;
+      if (pref.startsWith('custom:')) { try { return await zRunCustom(pref.slice(7), messages, withMeta); } catch (e) { err = e; } }
+      if (hasOwn) { try { return await __raf(messages, withMeta); } catch (e) { err = e; } }
+      for (const c of customs) { try { return await zRunCustom(c.id, messages, withMeta); } catch (e) { err = e; } }
+      if (zauth.enabled()) { if (zauth.s) return await zGateway(messages, withMeta); throw err || new Error('Ingia kwenye "Akaunti" ili utumie AI ya bure ya Zuri, au ongeza AI yako kwenye "Ongeza AI".'); }
+      throw err || new Error('Hakuna AI iliyowekwa. Fungua "Ongeza AI".');
+    };
+    function reportMsg(idx) {
+      const m = state.chat[idx]; if (!m) return;
+      const reason = prompt('Kwa nini unaripoti jibu hili? (mfano: lina matusi, si sahihi, ni hatari)', 'Si sahihi'); if (reason === null) return;
+      const rec = { at: Date.now(), reason: reason.slice(0, 80), text: (m.text || '').slice(0, 1500) };
+      try { const l = JSON.parse(localStorage.getItem('zuri_reports_v1') || '[]'); l.push(rec); localStorage.setItem('zuri_reports_v1', JSON.stringify(l.slice(-50))); } catch (_) {}
+      if (ZCFG.API_BASE) zauth.token().then(t => fetch(ZCFG.API_BASE.replace(/\/$/, '') + '/api/report', { method: 'POST', headers: { 'Content-Type': 'application/json', ...(t ? { Authorization: 'Bearer ' + t } : {}) }, body: JSON.stringify(rec) })).catch(() => {});
+      toast('Asante. Ripoti yako imepokelewa.', 'success');
+    }
+
+    /* ----- muundo: kichwa cha ukurasa, menyu ya chini, PWA ----- */
+    const ZMETA = {
+      'chat.html': ['fa-comments', 'Zuri — Mazungumzo', 'Ongea, tuma picha, na piga simu ya sauti na Zuri.'],
+      'business.html': ['fa-chart-line', 'Tovuti & Mauzo', 'Ushauri wa mauzo, ofa, funnel na mpango wa siku 7.'],
+      'creator.html': ['fa-clapperboard', 'Creator Studio', 'YouTube, TikTok na Instagram: hooks, scripts na captions.'],
+      'api-settings.html': ['fa-key', 'Keys & Sauti', 'API keys, models za AI na mipangilio ya sauti ya Zuri.'],
+      'workspace.html': ['fa-folder-open', 'Mafaili, Logo & Backup', 'Kumbukumbu, majukumu, mafaili na backup ya data yako.'],
+      'ai-hub.html': ['fa-robot', 'Ongeza AI', 'Tafuta AI kwa jina, ona inatumia model gani, ongeza na upate key bure.'],
+      'account.html': ['fa-user-shield', 'Akaunti & Matumizi', 'Ingia, angalia kikomo chako cha leo na udhibiti data yako.'],
+      'privacy.html': ['fa-lock', 'Sera ya Faragha', 'Tunavyoshughulikia data yako.'],
+      'terms.html': ['fa-file-contract', 'Masharti ya Matumizi', 'Sheria za kutumia Zuri.']
+    };
+    function zInstall() {
+      if (window.__zDeferred) { window.__zDeferred.prompt(); window.__zDeferred = null; }
+      else toast('Chrome: menyu ⋮ → "Add to Home screen". iPhone: Share → "Add to Home Screen".', 'info');
+    }
+    window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); window.__zDeferred = e; });
+    function zInjectChrome() {
+      const cur = currentPage(), main = document.querySelector('main'), meta = ZMETA[cur];
+      if (meta && main && !document.querySelector('.page-hero')) {
+        const h = document.createElement('div'); h.className = 'page-hero';
+        h.innerHTML = `<div class="ph-ic"><i class="fa-solid ${meta[0]}"></i></div><div><h1>${meta[1]}</h1><p>${meta[2]}</p></div>`;
+        main.insertBefore(h, main.firstChild);
+      }
+      if (document.querySelector('#bottom-nav')) return;
+      const items = [['index.html', 'fa-house', 'Nyumbani'], ['chat.html', 'fa-comments', 'Zuri'], ['business.html', 'fa-chart-line', 'Mauzo'], ['creator.html', 'fa-clapperboard', 'Studio'], ['more', 'fa-ellipsis', 'Zaidi']];
+      const nav = document.createElement('nav'); nav.id = 'bottom-nav'; nav.setAttribute('aria-label', 'Menyu kuu');
+      nav.innerHTML = items.map(([h, ic, t]) => `<a ${h === 'more' ? 'href="#" data-more="1"' : `href="${h}"`} class="${h === cur ? 'on' : ''}"><i class="fa-solid ${ic}"></i><span>${t}</span></a>`).join('');
+      document.body.appendChild(nav);
+      const sheet = document.createElement('div'); sheet.id = 'more-sheet';
+      const links = [['ai-hub.html', 'fa-robot', 'Ongeza AI'], ['api-settings.html', 'fa-key', 'Keys & Sauti'], ['workspace.html', 'fa-folder-open', 'Mafaili & Backup'], ['account.html', 'fa-user-shield', 'Akaunti & Matumizi'], ['privacy.html', 'fa-lock', 'Faragha'], ['terms.html', 'fa-file-contract', 'Masharti']];
+      sheet.innerHTML = `<div class="ms-bg"></div><div class="ms-card"><div class="ms-grab"></div>${links.map(([h, ic, t]) => `<a href="${h}"><i class="fa-solid ${ic}"></i>${t}</a>`).join('')}<a href="#" data-install="1"><i class="fa-solid fa-mobile-screen"></i>Weka Zuri kwenye simu</a></div>`;
+      document.body.appendChild(sheet);
+      const close = () => sheet.classList.remove('on');
+      nav.querySelector('[data-more]').onclick = e => { e.preventDefault(); sheet.classList.add('on'); };
+      sheet.querySelector('.ms-bg').onclick = close;
+      sheet.querySelector('[data-install]').onclick = e => { e.preventDefault(); close(); zInstall(); };
+    }
+    window.addEventListener('DOMContentLoaded', () => {
+      zInjectChrome();
+      if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) navigator.serviceWorker.register('sw.js').catch(() => {});
+    });
+
     window.addEventListener('DOMContentLoaded', init);
 </script>
-<div id="zuri-ver" style="text-align:center;font-size:11px;color:#8b93c7;padding:14px 0 22px">Zuri Studio v2.1 — LIFEISGAMETZ</div></body>
+<div style="text-align:center;font-size:11px;color:#8b93c7;padding:14px 0 22px">Zuri Studio v6 — LIFEISGAMETZ</div></body>
 </html>
